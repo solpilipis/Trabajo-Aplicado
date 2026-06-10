@@ -9,6 +9,48 @@ def cargar_datos(ruta_csv):
             df[col] = df[col].astype(str).str.strip()
     return df
 
+def test_riasec(ruta):
+    nombre_archivo = ruta
+    df = pd.read_excel(nombre_archivo)
+    df['Dimensión RIASEC'] = df['Dimensión RIASEC'].str[0]
+    
+    resultados = {"R": 0, "I": 0, "A": 0, "S": 0, "E": 0, "C": 0}
+    
+    print("Test RIASEC")
+    
+    print("INSTRUCCIONES")
+    
+    print("Califica qué tanto disfrutarías hacer cada actividad.")
+    print("⚠️ Reglas antes de responder:")
+    print("  1. Ignora el sueldo: no pienses si paga bien o mal.")
+    print("  2. Ignora tus estudios: no importa si aún no sabes hacerlo.")
+    
+    print("Escala:")
+    print("  [ 1 ] = Me disgusta mucho")
+    print("  [ 2 ] = Me disgusta")
+    print("  [ 3 ] = Neutral")
+    print("  [ 4 ] = Me gusta")
+    print("  [ 5 ] = Me gusta mucho")
+    
+    for indice, fila in df.iterrows():
+        pregunta = fila['Texto de la Pregunta (¿Qué tanto te gustaría...)']
+        dimension = fila['Dimensión RIASEC']
+        while True:
+            try:
+                respuesta = int(input(f"{pregunta}: "))
+               
+                if respuesta < 1 or respuesta > 5:
+                    print("El valor debe ser entre 1 y 5.")
+                    
+                else:
+                    resultados[dimension] += respuesta
+                    break
+                    
+            except ValueError:
+                print("La respuesta debe ser un número.")
+    
+    return resultados
+
 def filtrar_carreras(df_carreras):
     """
     Pide al usuario una provincia y un tipo de gestión (Pública/Privada),
