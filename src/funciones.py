@@ -10,8 +10,19 @@ def cargar_datos(ruta_csv):
     return df
 
 def test_riasec(ruta):
-    nombre_archivo = ruta
-    df = pd.read_excel(nombre_archivo)
+    """
+    Le hace el test RIASEC al usuario y devuelve los resultados.
+
+    Parameters
+    ----------
+    ruta : string
+
+    Returns
+    -------
+    resultados : dict
+
+    """
+    df = pd.read_excel(ruta)
     df['Dimensión RIASEC'] = df['Dimensión RIASEC'].str[0]
     
     resultados = {"R": 0, "I": 0, "A": 0, "S": 0, "E": 0, "C": 0}
