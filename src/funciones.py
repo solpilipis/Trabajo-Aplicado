@@ -1,8 +1,97 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-"""
-Created on Mon Jun  1 14:02:15 2026
+import pandas as pd  
 
-@author: clarabaietti
-"""
+
+
+def filtrar_carreras(df_carreras):
+    """
+    Pide al usuario una provincia y un tipo de gestión (Pública/Privada),
+    filtra el DataFrame recibido y devuelve solo las filas que coinciden.
+    """
+    
+    provincia = input("Ingrese la provincia de interés: ").strip()
+    tipo = input("Ingrese el tipo de universidad (Pública/Privada): ").strip()
+    
+
+    condicion_provincia = df_carreras['Provincia'].str.lower() == provincia.lower()
+    condicion_tipo = df_carreras['Tipo'].str.lower() == tipo.lower()
+    
+
+    df_filtrado = df_carreras[condicion_provincia & condicion_tipo]
+    
+    return df_filtrado 
+
+def calcular_score(codigo_usuario, codigos_carrera):    
+    
+    '''  
+    Calcula el mejor puntaje de similitud entre el código RIASEC del usuario y los distintos códigos
+    RIASEC asociados a una carrera. 
+    
+    Parameters
+    ---------- 
+    codigo_usuario : str. Código RIASEC de 6 caracteres asociado al usuario según sus respuestas 
+                    al cuestionario 
+                    
+    codigos_carrera : str. Perfiles RIASEC asociados a la carrera en el dataframe. 
+    
+    Returns 
+    ------- 
+    mejor_score : int. Mejor puntaje de similitud obtenido entre todos los perfiles RIASEC de la carrera. 
+    '''
+    
+    mejor_score = 0 
+    
+    puntos = [6, 5, 4, 3, 2 ,1] 
+    
+    codigos = codigos_carrera.split("|") 
+     
+    for codigo in codigos: 
+        
+        score = 0 
+        
+        for i in range(6): 
+        
+            if codigo_usuario[i] == codigo[i]: 
+            
+                score += puntos[i]  
+                
+        if score > mejor_score: 
+            
+            mejor_score = score
+            
+    return mejor_score 
+    
+def generar_ranking(codigo_usuario, df_filtrado):  
+    
+    ''' 
+    Genera un ranking de las 5 carreras con mayor puntaje de similitud con el perfil RIASEC 
+    del usuario. 
+    
+    Parameters 
+    ---------- 
+    
+    Returns
+    -------
+    ''' 
+    df_filtrado["Score"] = 0
+
+    for i in df_filtrado.index:
+    
+        codigos_carrera = df_filtrado.loc[i, "RIASEC_Codes"]
+
+        score = calcular_score( 
+            
+          codigo_usuario,
+          codigos_carrera 
+          )
+
+        df_filtrado.loc[i, "Score"] = score
+
+        df_filtrado = df_filtrado.sort_values(
+      
+          by="Score",
+          ascending=False
+            )
+
+    return df_filtrado.head(5)
+    
 
