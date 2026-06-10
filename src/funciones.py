@@ -71,16 +71,42 @@ def filtrar_carreras(df_carreras):
     """
     
     provincia = input("Ingrese la provincia de interés: ").strip()
-    tipo = input("Ingrese el tipo de universidad (Pública/Privada): ").strip()
-    
 
-    condicion_provincia = df_carreras['Provincia'].str.lower() == provincia.lower()
-    condicion_tipo = df_carreras['Tipo'].str.lower() == tipo.lower()
-    
+    tipo_gestion = input(
+        "Ingrese el tipo de universidad (Pública/Privada): "
+    ).strip()
 
-    df_filtrado = df_carreras[condicion_provincia & condicion_tipo]
-    
-    return df_filtrado 
+    tipo_titulo = input(
+        "Ingrese el tipo de título: "
+    ).strip()
+
+    duracion_max = int(
+        input("Ingrese la duración máxima deseada (en años): ")
+    )
+
+    condicion_provincia = (
+        df_carreras["Provincia"].str.lower()
+        == provincia.lower()
+    )
+
+    condicion_gestion = (
+        df_carreras["Tipo_Gestion"].str.lower()
+        == tipo_gestion.lower()
+    )
+
+    condicion_titulo = (
+        df_carreras["Tipo"].str.lower()
+        == tipo_titulo.lower()
+    )
+
+    condicion_duracion = (
+        df_carreras["Duracion"]
+        <= duracion_max
+    )
+
+    df_filtrado = df_carreras[condicion_provincia & condicion_gestion & condicion_titulo & condicion_duracion]
+
+    return df_filtrado
 
 def calcular_score(codigo_usuario, codigos_carrera):    
     
