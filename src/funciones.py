@@ -1,4 +1,13 @@
 import pandas as pd  
+import streamlit as st
+
+@st.cache_data  
+def cargar_datos(ruta_csv):
+    df = pd.read_csv(ruta_csv)
+    for col in ['Universidad', 'Título', 'Gestion', 'RIASEC']:
+        if col in df.columns:
+            df[col] = df[col].astype(str).str.strip()
+    return df
 
 def filtrar_carreras(df_carreras):
     """
