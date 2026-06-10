@@ -60,6 +60,42 @@ def calcular_score(codigo_usuario, codigos_carrera):
             
     return mejor_score 
     
+
+
+
+def generar_codigo_riasec(datos_dic):
+    """ 
+    devuelve un codigo de 6 letras de las diferentes combinaciones RIASEC en base a
+    los puntajes objetidos 
+    
+    parametros
+    ----------
+    datos_dic : dic
+        diccionario con las letras RIASEC como clave y el puntaje de cada una como valor 
+        
+    reeturns
+    ---------
+    codigo_usuario: str 
+        combinación de las letras RIASEC en base a sus puntajes ordenadas de mayor a menor 
+    
+    """    
+    for i in range (6): #ciclo por 6 porq son las siglas RIASEC
+        valor_mayor = -1 #valor incializado 
+        letra = ""
+        
+        for clave, valor in diccio.items():
+            if valor > valor_mayor :
+                valor_mayor = valor 
+                letra = clave 
+                
+        codigo_usuario += letra #le sumo al str la letra mayor 
+        
+        diccio.pop(letra) #elimino la letra que ya use 
+        
+    return codigo_usuario 
+
+
+
 def generar_ranking(codigo_usuario, df_filtrado):  
     
     ''' 
