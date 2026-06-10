@@ -1,7 +1,5 @@
 import pandas as pd  
 
-
-
 def filtrar_carreras(df_carreras):
     """
     Pide al usuario una provincia y un tipo de gestión (Pública/Privada),
@@ -58,9 +56,8 @@ def calcular_score(codigo_usuario, codigos_carrera):
             
             mejor_score = score
             
-    return mejor_score 
+    return mejor_score  
     
-
 
 
 def generar_codigo_riasec(datos_dic):
@@ -93,9 +90,7 @@ def generar_codigo_riasec(datos_dic):
         diccio.pop(letra) #elimino la letra que ya use 
         
     return codigo_usuario 
-
-
-
+    
 def generar_ranking(codigo_usuario, df_filtrado):  
     
     ''' 
@@ -108,26 +103,36 @@ def generar_ranking(codigo_usuario, df_filtrado):
     Returns
     -------
     ''' 
-    df_filtrado["Score"] = 0
+    df_ranking = df_filtrado.copy()
 
-    for i in df_filtrado.index:
-    
-        codigos_carrera = df_filtrado.loc[i, "RIASEC_Codes"]
+    df_ranking["Score"] = 0
 
-        score = calcular_score( 
-            
-          codigo_usuario,
-          codigos_carrera 
-          )
+    for i in df_ranking.index: 
+        
+       codigos_carrera = df_ranking.loc[i, "RIASEC_Codes"]
 
-        df_filtrado.loc[i, "Score"] = score
+       score = calcular_score(codigo_usuario, codigos_carrera) 
+       
+       df_ranking.loc[i, "Score"] = score
 
-        df_filtrado = df_filtrado.sort_values(
-      
-          by="Score",
-          ascending=False
-            )
+ 
 
-    return df_filtrado.head(5)
+    df_ranking = df_ranking.sort_values(
+        
+       by="Score",
+       ascending=False 
+       
+      )
+
+ 
+
+    df_ranking = df_ranking.drop_duplicates( 
+        
+      subset="Carrera_Base"
+  )
+
+
+
+    return df_ranking.head(5)
     
 
