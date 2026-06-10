@@ -16,10 +16,12 @@ def test_riasec(ruta):
     Parameters
     ----------
     ruta : string
+    Ruta del excel que tiene las preguntas del test.
 
     Returns
     -------
     resultados : dict
+    Diccionario cuyas claves son las letras de RIASEC y cuyos valroes son la suma de las respuestas del usuario para cada letra.
 
     """
     df = pd.read_excel(ruta)
