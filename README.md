@@ -32,8 +32,8 @@ Descripcion de los datos
 - disciplian principal: descripcion geenral del area de desempeño de la carrera
 
 #Test RIASEC
--ID: id con el que se indentifica cada pregunta; por ejemplo P = pregunta 01 = numero de pregunta 
--texto de la pregunta: es la pregunta que se le hace al participante 
--dimension RIASEC: que letra se le asigna dependiendo de la respuesta 
+- ID: id con el que se indentifica cada pregunta; por ejemplo P = pregunta 01 = numero de pregunta 
+- texto de la pregunta: es la pregunta que se le hace al participante 
+- dimension RIASEC: que letra se le asigna dependiendo de la respuesta 
 
 
