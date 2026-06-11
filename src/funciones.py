@@ -170,6 +170,8 @@ def generar_codigo_riasec(datos_dic):
         valor_mayor = -1 #valor incializado 
         letra = ""
         diccio = datos_dic.copy()
+        codigo_usuario = ""
+        
         for clave, valor in diccio.items():
             if valor > valor_mayor :
                 valor_mayor = valor 
