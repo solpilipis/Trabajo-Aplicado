@@ -183,31 +183,6 @@ def generar_codigo_riasec(datos_dic):
         
     return codigo_usuario  
 
-'''  
-def generar_codigo_riasec(datos_dic):
-
-    diccio = datos_dic.copy()
-
-    codigo_usuario = ""
-
-    for i in range(6):
-
-        valor_mayor = -1
-        letra = ""
-
-        for clave, valor in diccio.items():
-
-            if valor > valor_mayor:
-
-                valor_mayor = valor
-                letra = clave
-
-        codigo_usuario += letra
-
-        diccio.pop(letra)
-
-    return codigo_usuario
-'''
     
 def generar_ranking(codigo_usuario, df_filtrado):  
     
