@@ -4,7 +4,7 @@ import streamlit as st
 @st.cache_data  
 def cargar_datos(ruta_csv):
     df = pd.read_csv(ruta_csv)
-    for col in ['Universidad', 'Título', 'Gestion', 'RIASEC']:
+    for col in ['Universidad', 'Facultad', 'Título', 'Tipo', 'Duración', 'Tipo_Gestion', 'RIASEC_Codes', 'Disciplina_Principal']:
         if col in df.columns:
             df[col] = df[col].astype(str).str.strip()
     return df
@@ -181,7 +181,33 @@ def generar_codigo_riasec(datos_dic):
         
         diccio.pop(letra) #elimino la letra que ya use 
         
-    return codigo_usuario 
+    return codigo_usuario  
+
+'''  
+def generar_codigo_riasec(datos_dic):
+
+    diccio = datos_dic.copy()
+
+    codigo_usuario = ""
+
+    for i in range(6):
+
+        valor_mayor = -1
+        letra = ""
+
+        for clave, valor in diccio.items():
+
+            if valor > valor_mayor:
+
+                valor_mayor = valor
+                letra = clave
+
+        codigo_usuario += letra
+
+        diccio.pop(letra)
+
+    return codigo_usuario
+'''
     
 def generar_ranking(codigo_usuario, df_filtrado):  
     
@@ -199,32 +225,25 @@ def generar_ranking(codigo_usuario, df_filtrado):
 
     df_ranking["Score"] = 0
 
-    for i in df_ranking.index: 
-        
+    for i in df_ranking.index:
+
        codigos_carrera = df_ranking.loc[i, "RIASEC_Codes"]
 
-       score = calcular_score(codigo_usuario, codigos_carrera) 
-       
+       score = calcular_score(
+           codigo_usuario,
+           codigos_carrera
+       )
+
        df_ranking.loc[i, "Score"] = score
 
- 
-
     df_ranking = df_ranking.sort_values(
-        
        by="Score",
-       ascending=False 
-       
-      )
+       ascending=False
+    )
 
- 
-
-    df_ranking = df_ranking.drop_duplicates( 
-        
-      subset="Carrera_Base"
-  )
-
-
+    df_ranking = df_ranking.drop_duplicates(
+       subset="Carrera_Base"
+    )
 
     return df_ranking.head(5)
-    
 
