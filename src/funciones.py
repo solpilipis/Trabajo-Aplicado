@@ -4,7 +4,7 @@ import streamlit as st
 @st.cache_data  
 def cargar_datos(ruta_csv):
     df = pd.read_csv(ruta_csv)
-    for col in ['Universidad', 'Facultad', 'Título', 'Tipo', 'Duración', 'Tipo_Gestion', 'RIASEC_Codes', 'Disciplina_Principal']:
+    for col in ['Universidad', 'Facultad', 'Título', 'Tipo', 'Duración', 'Tipo_Gestion', 'RIASEC_Codes', 'Disciplina_Principal', 'Provincia']:
         if col in df.columns:
             df[col] = df[col].astype(str).str.strip()
     return df
