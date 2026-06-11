@@ -106,7 +106,40 @@ def filtrar_carreras(df_carreras):
 
     df_filtrado = df_carreras[condicion_provincia & condicion_gestion & condicion_titulo & condicion_duracion]
 
-    return df_filtrado
+    return df_filtrado 
+
+def generar_codigo_riasec(datos_dic):
+    """ 
+    devuelve un codigo de 6 letras de las diferentes combinaciones RIASEC en base a
+    los puntajes objetidos 
+    
+    parametros
+    ----------
+    datos_dic : dic
+        diccionario con las letras RIASEC como clave y el puntaje de cada una como valor 
+        
+    reeturns
+    ---------
+    codigo_usuario: str 
+        combinación de las letras RIASEC en base a sus puntajes ordenadas de mayor a menor 
+    
+    """    
+    for i in range (6): #ciclo por 6 porq son las siglas RIASEC
+        valor_mayor = -1 #valor incializado 
+        letra = ""
+        diccio = datos_dic.copy()
+        codigo_usuario = ""
+        
+        for clave, valor in diccio.items():
+            if valor > valor_mayor :
+                valor_mayor = valor 
+                letra = clave 
+                
+        codigo_usuario += letra #le sumo al str la letra mayor 
+        
+        diccio.pop(letra) #elimino la letra que ya use 
+        
+    return codigo_usuario  
 
 def calcular_score(codigo_usuario, codigos_carrera):    
     
@@ -147,41 +180,6 @@ def calcular_score(codigo_usuario, codigos_carrera):
             mejor_score = score
             
     return mejor_score  
-    
-
-
-def generar_codigo_riasec(datos_dic):
-    """ 
-    devuelve un codigo de 6 letras de las diferentes combinaciones RIASEC en base a
-    los puntajes objetidos 
-    
-    parametros
-    ----------
-    datos_dic : dic
-        diccionario con las letras RIASEC como clave y el puntaje de cada una como valor 
-        
-    reeturns
-    ---------
-    codigo_usuario: str 
-        combinación de las letras RIASEC en base a sus puntajes ordenadas de mayor a menor 
-    
-    """    
-    for i in range (6): #ciclo por 6 porq son las siglas RIASEC
-        valor_mayor = -1 #valor incializado 
-        letra = ""
-        diccio = datos_dic.copy()
-        codigo_usuario = ""
-        
-        for clave, valor in diccio.items():
-            if valor > valor_mayor :
-                valor_mayor = valor 
-                letra = clave 
-                
-        codigo_usuario += letra #le sumo al str la letra mayor 
-        
-        diccio.pop(letra) #elimino la letra que ya use 
-        
-    return codigo_usuario  
 
     
 def generar_ranking(codigo_usuario, df_filtrado):  
@@ -192,9 +190,11 @@ def generar_ranking(codigo_usuario, df_filtrado):
     
     Parameters 
     ---------- 
-    
+    codigo_usuario: str. Código RIASEC de 6 caracteres asociado al usuario según sus respuestas 
+                    al cuestionario 
     Returns
-    -------
+    ------- 
+    df_filtrado: dataframe filtrado según las preferencias del usuario elegidas en filtrar_carreras()
     ''' 
     df_ranking = df_filtrado.copy()
 
@@ -204,21 +204,13 @@ def generar_ranking(codigo_usuario, df_filtrado):
 
        codigos_carrera = df_ranking.loc[i, "RIASEC_Codes"]
 
-       score = calcular_score(
-           codigo_usuario,
-           codigos_carrera
-       )
+       score = calcular_score(codigo_usuario, codigos_carrera)
 
        df_ranking.loc[i, "Score"] = score
 
-    df_ranking = df_ranking.sort_values(
-       by="Score",
-       ascending=False
-    )
+    df_ranking = df_ranking.sort_values(by="Score", ascending=False)
 
-    df_ranking = df_ranking.drop_duplicates(
-       subset="Carrera_Base"
-    )
+    df_ranking = df_ranking.drop_duplicates(subset="Carrera_Base")
 
     return df_ranking.head(5)
 
