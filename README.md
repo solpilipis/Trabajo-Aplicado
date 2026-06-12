@@ -31,6 +31,15 @@ Descripcion de los datos
 - RIASEC_codes: son las posibles combinaciones de las letras RIASEC dependiendo del score
 - disciplian principal: descripcion geenral del area de desempeño de la carrera
 
+Instrucciones para ejecutar el programa: 
+el usuario debe primero responder preguntas sobre preferencias, ubicación y otras relevantes para la recomendacion de la universidad y luego responder el test RIASEC
+
+Estructura del repositorio 
+- datos
+- src
+- DS_store
+- README.md
+- main.py
 #Test RIASEC
 - ID: id con el que se indentifica cada pregunta; por ejemplo P = pregunta 01 = numero de pregunta 
 - texto de la pregunta: es la pregunta que se le hace al participante 
