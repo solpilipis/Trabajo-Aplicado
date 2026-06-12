@@ -124,15 +124,23 @@ def generar_codigo_riasec(datos_dic):
         combinación de las letras RIASEC en base a sus puntajes ordenadas de mayor a menor 
     
     """    
+    diccio = datos_dic.copy()
+    
+    codigo_usuario = ""
+    
+    
     for i in range (6): #ciclo por 6 porq son las siglas RIASEC
+    
         valor_mayor = -1 #valor incializado 
+        
         letra = ""
-        diccio = datos_dic.copy()
-        codigo_usuario = ""
         
         for clave, valor in diccio.items():
+            
             if valor > valor_mayor :
+                
                 valor_mayor = valor 
+                
                 letra = clave 
                 
         codigo_usuario += letra #le sumo al str la letra mayor 
