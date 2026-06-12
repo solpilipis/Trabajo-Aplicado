@@ -65,3 +65,4 @@ el usuario debe primero responder preguntas sobre preferencias, ubicación y otr
 - calcular_score: Compara la combinación de letras del usuario con las de una carrera y calcula un puntaje de afinidad, otorgando más puntos si coinciden en las primeras posiciones.
 - generar_codigo_riasec: ordena las letras del mayor al menor puntaje obtenido
 - generar_ranking: evalúa la afinidad de todas las carreras filtradas contra el perfil del usuario, elimina opciones duplicadas y las 5 mejores recomendaciones.
+- mostrar_ranking: muestra en consola las carreras recomendadas y le pide al usuario el numero de la carrera elegida y en base a eso y a la base de datos ya filtrada por la función filtrar_carreras, le muestra el titulo, la duracion, donde la puende estudiar, etc. 
