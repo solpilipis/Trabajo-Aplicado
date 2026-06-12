@@ -109,27 +109,26 @@ def filtrar_carreras(df_carreras):
 
         condicion_titulo = ((df_carreras["Tipo"].str.lower() != "grado") & (df_carreras["Tipo"].str.lower() != "título intermedio"))
 
-    duracion_max = int(input("Ingrese la duración máxima deseada (en años): "))
+    duracion_max = int(input("Ingrese la duración máxima deseada (en años): ")) 
+    
+    try:
 
-    condicion_provincia = (
-        df_carreras["Provincia"].str.lower()
-        == provincia.lower()
-    )
+        duracion_max = float(duracion_max)
 
-    condicion_gestion = (
-        df_carreras["Tipo_Gestion"].str.lower()
-        == tipo_gestion.lower()
-    )
+    except ValueError:
 
-    condicion_titulo = (
-        df_carreras["Tipo"].str.lower()
-        == tipo_titulo.lower()
-    )
+        raise ValueError("La duración debe ser un número.")
 
-    condicion_duracion = (
-        df_carreras["Duracion"]
-        <= duracion_max
-    )
+    duraciones = (df_carreras["Duración"].str.replace("años", "").str.strip().astype(float))
+
+
+    condicion_provincia = ( df_carreras["Provincia"].str.lower() == provincia.lower())
+
+    condicion_gestion = (df_carreras["Tipo_Gestion"].str.lower() == tipo_gestion.lower())
+
+    condicion_titulo = (df_carreras["Tipo"].str.lower() == tipo_titulo.lower())
+
+    condicion_duracion = (duraciones <= duracion_max)
 
     df_filtrado = df_carreras[condicion_provincia & condicion_gestion & condicion_titulo & condicion_duracion]
 
