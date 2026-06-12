@@ -64,25 +64,52 @@ def test_riasec(ruta):
     
     return resultados
 
+
 def filtrar_carreras(df_carreras):
     """
     Pide al usuario una provincia y un tipo de gestión (Pública/Privada),
     filtra el DataFrame recibido y devuelve solo las filas que coinciden.
     """
     
-    provincia = input("Ingrese la provincia de interés: ").strip()
+    provincia = input("Ingrese la provincia de interés: ").strip().lower() 
+    
+    if provincia not in list(df_carreras["Provincia"].str.lower()):
 
-    tipo_gestion = input(
-        "Ingrese el tipo de universidad (Pública/Privada): "
-    ).strip()
+        raise ValueError("La provincia ingresada no es válida.")
 
-    tipo_titulo = input(
-        "Ingrese el tipo de título: "
-    ).strip()
+    tipo_gestion = input("Ingrese el tipo de universidad (Pública/Privada): ").strip().lower()  
+    
+    if tipo_gestion == "publica": 
+        
+        tipo_gestion == "pública"
+    
+    if tipo_gestion not in list(df_carreras["Tipo_Gestion"].str.lower()): 
+        
+        raise ValueError("Debe ingresar Pública o Privada.")
 
-    duracion_max = int(
-        input("Ingrese la duración máxima deseada (en años): ")
-    )
+    tipo_titulo = input("Ingrese el tipo de título que busca (Grado/Título Intermedio/Otro): ").strip().lower() 
+    
+    if tipo_titulo == "titulo intermedio": 
+        
+        tipo_titulo = "título intermedio" 
+    
+    if (tipo_titulo != "grado" and tipo_titulo != "título intermedio" and tipo_titulo != "otro"): 
+        
+        raise ValueError("Deebe ingresar Grado, Título Intermedio u otro.")
+        
+    if tipo_titulo == "grado":
+
+        condicion_titulo = ( df_carreras["Tipo"].str.lower() == "grado")
+
+    elif tipo_titulo == "título intermedio":
+
+        condicion_titulo = (df_carreras["Tipo"].str.lower() == "título intermedio") 
+        
+    else:
+
+        condicion_titulo = ((df_carreras["Tipo"].str.lower() != "grado") & (df_carreras["Tipo"].str.lower() != "título intermedio"))
+
+    duracion_max = int(input("Ingrese la duración máxima deseada (en años): "))
 
     condicion_provincia = (
         df_carreras["Provincia"].str.lower()
