@@ -17,7 +17,7 @@ while True:
 
         try:
 
-            df_filtrado = filtrar_carreras(df_carreras)
+            df_filtrado = filtrar_carreras(df_carreras) #filtrar carreras tiene problemas, corregir.
 
             break
 
