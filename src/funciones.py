@@ -81,7 +81,7 @@ def filtrar_carreras(df_carreras):
     
     if tipo_gestion == "publica": 
         
-        tipo_gestion == "pública"
+        tipo_gestion = "pública"
     
     if tipo_gestion not in list(df_carreras["Tipo_Gestion"].str.lower()): 
         
@@ -125,8 +125,6 @@ def filtrar_carreras(df_carreras):
     condicion_provincia = ( df_carreras["Provincia"].str.lower() == provincia.lower())
 
     condicion_gestion = (df_carreras["Tipo_Gestion"].str.lower() == tipo_gestion.lower())
-
-    condicion_titulo = (df_carreras["Tipo"].str.lower() == tipo_titulo.lower())
 
     condicion_duracion = (duraciones <= duracion_max)
 

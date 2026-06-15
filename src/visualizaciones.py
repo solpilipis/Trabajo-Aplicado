@@ -5,7 +5,7 @@ def mostrar_ranking(df_ranking, df_filtrado):
     al usuario elegir una para obtener más información.
     '''
 
-    print("\nTOP 5 CARRERAS RECOMENDADAS\n")
+    print("\nTOP 5 CARRERAS RECOMENDADAS\n") 
 
     for i in range(len(df_ranking)):
 
