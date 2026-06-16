@@ -69,6 +69,17 @@ def filtrar_carreras(df_carreras):
     """
     Pide al usuario una provincia y un tipo de gestión (Pública/Privada),
     filtra el DataFrame recibido y devuelve solo las filas que coinciden.
+
+    Parametros
+    -------------
+    df_carreras : DataFrame
+        DataFrame con la informacion a filtrar de las carreras
+
+    Returns
+    -------------
+    df_filtrado : DataFrame
+        Dataframe nuevo y mas chico que contiene unicamente la informacion que cumplen las dos condiciones que ingreso el usuario
+        
     """
     
     provincia = input("Ingrese la provincia de interés: ").strip().lower() 
