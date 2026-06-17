@@ -68,6 +68,7 @@ el usuario debe primero responder preguntas sobre preferencias, ubicación y otr
 - mostrar_ranking: muestra en consola las carreras recomendadas y le pide al usuario el numero de la carrera elegida y en base a eso y a la base de datos ya filtrada por la función filtrar_carreras, le muestra el titulo, la duracion, donde la puende estudiar, etc.
   
 # Resultados, salidas, métricas, gráficos o funcionalidades generadas, según corresponda
+muestra por consola las carreras recomendadas, la duracion, el titulo, donde se estudia. muestra un grafico de barras comparando el perfil riasec (afinidad del 1 al 10 en el eje y, carreras eje x) , otro con el top 5 carreras recomendadas (eje y) y la duracion minima (eje x)
 
 # Diagramas de diseño.
 
