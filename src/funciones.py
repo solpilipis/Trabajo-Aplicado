@@ -1,8 +1,21 @@
 import pandas as pd  
 import streamlit as st
 
-@st.cache_data  
+@st.cache_data  #Carga el archivo CSV y guarda la tabla en la memoria caché de Streamlit para que la página no tenga que releer el archivo del disco cada vez que el usuario mueve un slider o interactúa con la web.
 def cargar_datos(ruta_csv):
+    """
+
+    Parameters
+    ----------
+    ruta_csv : scr
+        La ruta del archivo con la informacion de todas las carreras y el restluado RIASEC
+
+    Returns
+    -------
+    df : pandas.Dataframe
+        Devuelve ua tabla de panda con toda la informacion del archivo ruta_csv
+
+    """
     df = pd.read_csv(ruta_csv)
     for col in ['Universidad', 'Facultad', 'Título', 'Tipo', 'Duración', 'Tipo_Gestion', 'RIASEC_Codes', 'Disciplina_Principal', 'Provincia']:
         if col in df.columns:
