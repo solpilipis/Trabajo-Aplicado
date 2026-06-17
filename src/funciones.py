@@ -94,67 +94,88 @@ def filtrar_carreras(df_carreras):
         Dataframe nuevo y mas chico que contiene unicamente la informacion que cumplen las dos condiciones que ingreso el usuario
         
     """
+    #filtro provincia 
     
-    provincia = input("Ingrese la provincia de interés: ").strip().lower() 
-    
-    
-    condicion_provincia = (df_carreras["Provincia"].str.lower().str.contains(provincia))
+    while True:
+ 
+        provincia = input("Ingrese la provincia de interés: ").strip().lower()
+ 
+        condicion_provincia = (df_carreras["Provincia"].str.lower().str.contains(provincia))
+ 
+        if condicion_provincia.any(): 
+            
+            break 
+        
+        print("Error: La provincia ingresada no es válida.") 
+        
+    #filtro gestión
 
-    if not condicion_provincia.any(): 
+    while True:
+ 
+        tipo_gestion = input("Ingrese el tipo de universidad (Pública/Privada): ").strip().lower()
+ 
+        if tipo_gestion == "publica":
+            tipo_gestion = "pública"
+ 
+        if tipo_gestion in list(df_carreras["Tipo_Gestion"].str.lower()): 
+            
+            break
+ 
+        print("Error: Debe ingresar Pública o Privada.") 
         
-        raise ValueError("La provincia ingresada no es válida.")
+    #filtro tipo de título
 
-    tipo_gestion = input("Ingrese el tipo de universidad (Pública/Privada): ").strip().lower()  
-    
-    if tipo_gestion == "publica": 
-        
-        tipo_gestion = "pública"
-    
-    if tipo_gestion not in list(df_carreras["Tipo_Gestion"].str.lower()): 
-        
-        raise ValueError("Debe ingresar Pública o Privada.")
-
-    tipo_titulo = input("Ingrese el tipo de título que busca (Grado/Título Intermedio/Otro): ").strip().lower() 
-    
-    if tipo_titulo == "titulo intermedio": 
-        
-        tipo_titulo = "título intermedio" 
-    
-    if (tipo_titulo != "grado" and tipo_titulo != "título intermedio" and tipo_titulo != "otro"): 
-        
-        raise ValueError("Deebe ingresar Grado, Título Intermedio u otro.")
-        
+    while True:
+ 
+        tipo_titulo = input("Ingrese el tipo de título que busca (Grado/Título Intermedio/Otro): ").strip().lower()
+ 
+        if tipo_titulo == "titulo intermedio":
+            tipo_titulo = "título intermedio"
+ 
+        if tipo_titulo in ("grado", "título intermedio", "otro"): 
+            
+            break
+ 
+        print("Error: Debe ingresar Grado, Título Intermedio u Otro.")
+ 
     if tipo_titulo == "grado":
-
-        condicion_titulo = ( df_carreras["Tipo"].str.lower() == "grado")
-
+ 
+        condicion_titulo = (df_carreras["Tipo"].str.lower() == "grado") 
+ 
     elif tipo_titulo == "título intermedio":
-
+ 
         condicion_titulo = (df_carreras["Tipo"].str.lower() == "título intermedio") 
         
     else:
-
+ 
         condicion_titulo = ((df_carreras["Tipo"].str.lower() != "grado") & (df_carreras["Tipo"].str.lower() != "título intermedio"))
 
-    duracion_max = int(input("Ingrese la duración máxima deseada (en años): ")) 
+    #filtro duración máxima
     
-   
-    try: 
+    while True:
+ 
+        entrada_duracion = input("Ingrese la duración máxima deseada (en años): ").strip()
+ 
+        try: 
+            
+            duracion_max = float(entrada_duracion) 
+            
+            break 
         
-        duracion_max = float(duracion_max) 
-        
-    except ValueError: 
-        
-        raise ValueError("La duración debe ser un número.")
-
-    duraciones = (df_carreras["Duración"].str.replace("años", "").str.strip().astype(float))
+        except ValueError: 
+            
+            print("Error: La duración debe ser un número.") 
+    
+    duraciones = df_carreras["Duración"].str.extract(r'(\d+(?:\.\d+)?)')[0].astype(float) 
+    
+    # el extract hace que solo se quede con el numero, sacando la plabra "año" o "año" y todo el texto que pueda haber.
 
     condicion_gestion = (df_carreras["Tipo_Gestion"].str.lower() == tipo_gestion.lower())
-
+ 
     condicion_duracion = (duraciones <= duracion_max)
-
+ 
     df_filtrado = df_carreras[condicion_provincia & condicion_gestion & condicion_titulo & condicion_duracion]
-
+ 
     return df_filtrado 
 
 def generar_codigo_riasec(datos_dic):
@@ -223,6 +244,12 @@ def calcular_score(codigo_usuario, codigos_carrera):
     codigos = codigos_carrera.split("|") 
      
     for codigo in codigos: 
+        
+        codigo = codigo.strip() 
+        
+        if len(codigo) != 6: 
+            
+            continue 
         
         score = 0 
         
