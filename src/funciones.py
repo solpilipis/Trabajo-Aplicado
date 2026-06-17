@@ -97,8 +97,11 @@ def filtrar_carreras(df_carreras):
     
     provincia = input("Ingrese la provincia de interés: ").strip().lower() 
     
-    if provincia not in list(df_carreras["Provincia"].str.lower()):
+    
+    condicion_provincia = (df_carreras["Provincia"].str.lower().str.contains(provincia))
 
+    if not condicion_provincia.any(): 
+        
         raise ValueError("La provincia ingresada no es válida.")
 
     tipo_gestion = input("Ingrese el tipo de universidad (Pública/Privada): ").strip().lower()  
@@ -135,18 +138,16 @@ def filtrar_carreras(df_carreras):
 
     duracion_max = int(input("Ingrese la duración máxima deseada (en años): ")) 
     
-    try:
-
-        duracion_max = float(duracion_max)
-
-    except ValueError:
-
+   
+    try: 
+        
+        duracion_max = float(duracion_max) 
+        
+    except ValueError: 
+        
         raise ValueError("La duración debe ser un número.")
 
     duraciones = (df_carreras["Duración"].str.replace("años", "").str.strip().astype(float))
-
-
-    condicion_provincia = ( df_carreras["Provincia"].str.lower() == provincia.lower())
 
     condicion_gestion = (df_carreras["Tipo_Gestion"].str.lower() == tipo_gestion.lower())
 
