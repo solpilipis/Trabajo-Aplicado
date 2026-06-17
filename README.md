@@ -72,6 +72,7 @@ el usuario debe primero responder preguntas sobre preferencias, ubicación y otr
 # Diagramas de diseño.
 
 # Declaración de uso de IA
+nos ayudo a aramar el dataset conjutno y con los metodos de pandas en la funcion filtrar_carreras
 
 #  Notas o explicaciones adicionales para correr correctamente el programa
 
