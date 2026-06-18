@@ -1,7 +1,7 @@
 # Recomendador de carreras a partir de test RIASEC 
 
 
-# Interantes:
+# Integrantes:
 - Clara Baietti
 - Micaela Cohen
 - Guadalupe Silva
@@ -17,6 +17,9 @@ El objetivo del programa es abordar la problemática de la elección de carreras
 - Olivia: cagar_datos / graficar_perfil / graficar_top5
 
 # Descripcion de los datos:
+El csv de carreras argentinas fue extraído con la ayuda de la IA de la siguiente página del gobierno: https://guiadecarreras.siu.edu.ar/
+Después con código y uso de IA, se le agregaron columnas para cruzar la información con el test RIASEC y mejorar la experiencia del usuario.
+El csv del test RIASEC está basado en las traducciones oficiales al español del O*NET Interest Profiler Short Form que utiliza el gobierno estadounidense en su plataforma de exploración de carreras para hispanohablantes, llamada "Mi Próximo Paso". 
 
 #Carreras argentinas:
 - id sistema: es el id con el que esta identificada cada universidad
@@ -40,21 +43,32 @@ El objetivo del programa es abordar la problemática de la elección de carreras
 
 
 # Instrucciones para ejecutar el programa: 
-el usuario debe primero responder preguntas sobre preferencias, ubicación y otras relevantes para la recomendacion de la universidad y luego responder el test RIASEC
+1) Clonar el repositorio: Descarga o clona este repositorio en tu computadora local.
+
+2) Instalar dependencias: Abre tu terminal, navega hasta la carpeta raíz del proyecto y ejecuta el siguiente comando para instalar las librerías necesarias: pip install -r requirements.txt
+
+3) Copia las rutas de los archivos Database_Carreras_Argentinas y Test_RIASEC de tu computadora. Pegalos en el main.py en:
+ruta_carreras = "La ruta del csv de las carreras."
+ruta_test = "La ruta del test RIASEC."
+según corresponda.
+
+4) Ejecución: En la terminal, ejecuta el archivo principal con el comando: python main.py
+
+5) Interacción: Una vez que el programa inicie en la consola, deberás ingresar tus preferencias (provincia y tipo de gestión), y luego responder a las preguntas del test RIASEC calificando del 1 al 5 según tu grado de afinidad. Finalmente, el sistema te mostrará tu código, las carreras recomendadas y los gráficos de tu perfil.
 
 # Liberrias utilizadas
-- Pandas
+- pandas
+- matplotlib
+- seaborn
 
 # Estructura del repositorio 
 - datos
-    - DS_Store
-    - Carreras_argentinas_con_provincias
-    - TestRIASE.xlsx
+    - Database_Carreras_Argentinas
+    - Test_RIASEC.xlsx
 - src
-   - DS_Store
    - funciones.py
    - visualizaciones.py
-- DS_store
+- requirements.txt
 - README.md
 - main.py
 
