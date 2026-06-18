@@ -23,7 +23,7 @@ def mostrar_ranking(df_ranking, df_filtrado):
         opcion = int(opcion)
         
         if opcion < 1 or opcion > len(df_ranking): 
-        
+          
             raise ValueError(f"Debe ingresar un número entre 1 y {len(df_ranking)}.")  
             continue 
         
