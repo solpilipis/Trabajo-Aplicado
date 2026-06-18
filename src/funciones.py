@@ -55,7 +55,8 @@ def test_riasec(ruta):
     for indice, fila in df.iterrows(): 
         
         print()
-        print("Escala:")
+        print("Escala:") 
+        print()
         print("  [ 1 ] = Me disgusta mucho")
         print("  [ 2 ] = Me disgusta")
         print("  [ 3 ] = Neutral")

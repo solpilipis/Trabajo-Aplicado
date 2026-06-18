@@ -1,7 +1,7 @@
 # Recomendador de carreras a partir de test RIASEC 
 
 
-# Integrantes:
+# Interantes:
 - Clara Baietti
 - Micaela Cohen
 - Guadalupe Silva
@@ -10,9 +10,9 @@
 
 # Objetivo:
 El objetivo del programa es abordar la problemática de la elección de carreras, para eso realiza preguntas del test RIASEC, en base a al puntaje que  obtiene cada letra las ordena de forma específica (por ejemplo SIAREC) y lo cruza con un dataset donde están las carreras cada una con un orden distinto de las letras y en base a eso te recomienda 5 posibles principales. El trabajo fue dividio en 5 partes + el main:
-- Clara: calcular_score / generar_ranking / main
+- Clara: calcular_score / generar_ranking / mostrar_ranking
 - Micaela: generar_codigo_riasec
-- Guadalupe: hacer_cuestionario / armado de base de datos
+- Guadalupe: hacer_cuestionario
 - Sol: filtrar_carreras
 - Olivia: cagar_datos / graficar_perfil / graficar_top5
 
@@ -42,7 +42,7 @@ El objetivo del programa es abordar la problemática de la elección de carreras
 # Instrucciones para ejecutar el programa: 
 el usuario debe primero responder preguntas sobre preferencias, ubicación y otras relevantes para la recomendacion de la universidad y luego responder el test RIASEC
 
-# Librerias utilizadas
+# Liberrias utilizadas
 - Pandas
 
 # Estructura del repositorio 
@@ -57,9 +57,6 @@ el usuario debe primero responder preguntas sobre preferencias, ubicación y otr
 - DS_store
 - README.md
 - main.py
-- diagramas
-  - calcular_score
-  - dibujar_grafico_
 
 # Explicación breve de las funciones principales
 - cargar_datos: Lee la base de datos desde un archivo CSV con pandas, recorre las columnas y limpia los espacios en blanco de las columnas principales
@@ -74,7 +71,6 @@ el usuario debe primero responder preguntas sobre preferencias, ubicación y otr
 muestra por consola las carreras recomendadas, la duracion, el titulo, donde se estudia. muestra un grafico de barras comparando el perfil riasec (afinidad del 1 al 10 en el eje y, carreras eje x) , otro con el top 5 carreras recomendadas (eje y) y la duracion minima (eje x)
 
 # Diagramas de diseño.
-
 
 # Declaración de uso de IA
 Utilizamos la IA para poder armar el dataset conjunto que usamos para el proyecto. Además, le pedimos métodos de pandas y streamlit para llevar a cabo el proyecto,
