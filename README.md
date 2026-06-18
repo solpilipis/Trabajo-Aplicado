@@ -21,7 +21,7 @@ El csv de carreras argentinas fue extraído con la ayuda de la IA de la siguient
 Después con código y uso de IA, se le agregaron columnas para cruzar la información con el test RIASEC y mejorar la experiencia del usuario.
 El csv del test RIASEC está basado en las traducciones oficiales al español del O*NET Interest Profiler Short Form que utiliza el gobierno estadounidense en su plataforma de exploración de carreras para hispanohablantes, llamada "Mi Próximo Paso". 
 
-#Carreras argentinas:
+# Carreras argentinas:
 - id sistema: es el id con el que esta identificada cada universidad
 - universidad: es la universidad
 - titulo: es el nombre del titulo con el que te recibis
@@ -55,6 +55,8 @@ según corresponda.
 4) Ejecución: En la terminal, ejecuta el archivo principal con el comando: python main.py
 
 5) Interacción: Una vez que el programa inicie en la consola, deberás ingresar tus preferencias (provincia y tipo de gestión), y luego responder a las preguntas del test RIASEC calificando del 1 al 5 según tu grado de afinidad. Finalmente, el sistema te mostrará tu código, las carreras recomendadas y los gráficos de tu perfil.
+
+Nota: Si el programa se ejecuta desde entornos como Spyder y los gráficos no se muestran, se recomienda correrlo desde la consola (CMD/Terminal).
 
 # Librerias utilizadas
 - pandas

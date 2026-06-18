@@ -1,5 +1,8 @@
 import matplotlib
-matplotlib.use('TkAgg') 
+try:
+    matplotlib.use('TkAgg') 
+except ImportError:
+    pass
 import matplotlib.pyplot as plt
 import seaborn as sns
 
