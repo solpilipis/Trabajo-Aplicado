@@ -27,7 +27,7 @@ def test_riasec(ruta):
     Parameters
     ----------
     ruta : string
-    Ruta del excel que tiene las preguntas del test.
+    Ruta del csv que tiene las preguntas del test.
 
     Returns
     -------
@@ -35,10 +35,13 @@ def test_riasec(ruta):
     Diccionario cuyas claves son las letras de RIASEC y cuyos valroes son la suma de las respuestas del usuario para cada letra.
 
     """
-    df = pd.read_csv(ruta)
-    df['Dimensión RIASEC'] = df['Dimensión RIASEC'].str[0]
+    df = pd.read_csv(ruta) #Lee el csv y lo guarda en un dataframe.
+    df['Dimensión RIASEC'] = df['Dimensión RIASEC'].str[0] #Renombra las dimensiones para que sean tan solo la primera letra (R, I, A, S, E o C)
     
     resultados = {"R": 0, "I": 0, "A": 0, "S": 0, "E": 0, "C": 0}
+    
+    total_preguntas = len(df)
+    numero_pregunta = 1
     
     print("Test RIASEC")
     
@@ -50,8 +53,9 @@ def test_riasec(ruta):
     print("  2. Ignora tus estudios: no importa si aún no sabes hacerlo.")
     
     
-    for indice, fila in df.iterrows(): 
+    for indice, fila in df.iterrows(): #Recorre fila por fila.
         
+        print(f"PREGUNTA {numero_pregunta} DE {total_preguntas}")
         print()
         print("Escala:") 
         print()
@@ -78,6 +82,7 @@ def test_riasec(ruta):
                     
             except ValueError:
                 print("La respuesta debe ser un número.")
+        numero_pregunta += 1
     
     return resultados
 

@@ -26,7 +26,7 @@ El csv del test RIASEC está basado en las traducciones oficiales al español de
 - universidad: es la universidad
 - titulo: es el nombre del titulo con el que te recibis
 - tipo: si es una carrera de grado, intermedio, tecnicatura, etc.
-- duracion: cuantos añso dura la carrera
+- duracion: cuantos años dura la carrera
 - ingreso: si hay que hacer curso de ingreso, examen, o cualquier otra condicion de ingreso a la universidad
 - domicilio: donde queda la universidad
 - telefono: telefono de contacto de la univeridad
@@ -56,7 +56,7 @@ según corresponda.
 
 5) Interacción: Una vez que el programa inicie en la consola, deberás ingresar tus preferencias (provincia y tipo de gestión), y luego responder a las preguntas del test RIASEC calificando del 1 al 5 según tu grado de afinidad. Finalmente, el sistema te mostrará tu código, las carreras recomendadas y los gráficos de tu perfil.
 
-# Liberrias utilizadas
+# Librerias utilizadas
 - pandas
 - matplotlib
 - seaborn
@@ -74,7 +74,7 @@ según corresponda.
 
 # Explicación breve de las funciones principales
 - cargar_datos: Lee la base de datos desde un archivo CSV con pandas, recorre las columnas y limpia los espacios en blanco de las columnas principales
-- test_riasec: le hace las preguntas del test RIASEC al usuario, calificando las rspuestas del 1-5, verifica que las respuestas sean validas y suma en un diccionario el valor que se le indica a cada letra
+- test_riasec: le hace las preguntas del test RIASEC al usuario, calificando las respuestas del 1-5, verifica que las respuestas sean validas y suma en un diccionario el valor que se le indica a cada letra
 - filtrar_carreras: Pide al usuario una provincia y un tipo de gestión (Pública/Privada), filtra el DataFrame recibido y devuelve solo las filas que coinciden.
 - calcular_score: Compara la combinación de letras del usuario con las de una carrera y calcula un puntaje de afinidad, otorgando más puntos si coinciden en las primeras posiciones.
 - generar_codigo_riasec: ordena las letras del mayor al menor puntaje obtenido
