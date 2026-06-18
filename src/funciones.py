@@ -1,7 +1,5 @@
 import pandas as pd  
-import streamlit as st
 
-@st.cache_data  #Carga el archivo CSV y guarda la tabla en la memoria caché de Streamlit para que la página no tenga que releer el archivo del disco cada vez que el usuario mueve un slider o interactúa con la web.
 def cargar_datos(ruta_csv):
     """
 

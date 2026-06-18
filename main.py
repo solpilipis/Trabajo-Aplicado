@@ -7,7 +7,10 @@ print("🎓📚 RECOMENDADOR DE CARRERAS 🎓📚  ")
 print("=====================================")  
 print()
 
-df_carreras = cargar_datos("/Users/clarabaietti/Documents/Github/Trabajo-Aplicado/datos/Database_Carreras_Argentinas.csv") 
+ruta_carreras = "La ruta del csv de las carreras."
+ruta_test = "La ruta del test RIASEC."
+
+df_carreras = cargar_datos(ruta_carreras) 
 
 print()
 print("Selecciona tus preferencias ✅:") 
@@ -34,7 +37,7 @@ print("📚 Test RIASEC: Responde las siguientes preguntas para obtener tu perfi
 print("-------------------------------------------------------------------------")  
 print() 
 
-resultados = test_riasec("/Users/clarabaietti/Documents/Github/Trabajo-Aplicado/datos/Test_RIASEC.csv")
+resultados = test_riasec(ruta_test)
 
 codigo_usuario = generar_codigo_riasec(resultados) 
 
