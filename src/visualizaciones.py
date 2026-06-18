@@ -1,12 +1,5 @@
-<<<<<<< Updated upstream
-import streamlit as st
 import matplotlib.pyplot as plt
 import seaborn as sns
-=======
-import matplotlib.pyplot as plt
-import seaborn as sns
-import pandas as pd
->>>>>>> Stashed changes
 
 def mostrar_ranking(df_ranking, df_filtrado):
 
@@ -144,9 +137,6 @@ def mostrar_grafico_top5(top_5_filtrado):
     ax.set_xlabel("Años")
     ax.legend(loc="lower right")
     ax.grid(axis='x', linestyle=':', alpha=0.6)
-<<<<<<< Updated upstream
-    st.pyplot(fig)
-=======
     plt.tight_layout()
     plt.show()
                         
@@ -154,7 +144,7 @@ def mostrar_grafico_top5(top_5_filtrado):
                         
                         
                         
->>>>>>> Stashed changes
+                        
                         
                         
                         
