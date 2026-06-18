@@ -85,9 +85,13 @@ def test_riasec(ruta):
 
 
 def filtrar_carreras(df_carreras):
+    # La funcion reduce el DataFrame ingresado (df_carreras) basandose en 4 criterios especificos (provincia, gestion, titulo, duracion)
+    # A traves de la consola, le hace preguntas al usuario (manejando los posibles errores de tipeo (minusculas y tildes))
+    # Devuelve un DataFrame mas pequeño con solo las opciones que cumplan todos los requisitos simultaneamente
+    
     """
-    Pide al usuario una provincia y un tipo de gestión (Pública/Privada),
-    filtra el DataFrame recibido y devuelve solo las filas que coinciden.
+    Pide al usuario una provincia, un tipo de gestión (Pública/Privada), un tipo de titulo (Grado, Titulo intermedio, otro) y la duracion maxima deseada
+    filtra el DataFrame recibido y devuelve uno acotando solo las filas que coinciden
 
     Parametros
     -------------
