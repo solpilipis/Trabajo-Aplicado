@@ -37,7 +37,7 @@ disciplian principal: descripcion geenral del area de desempeño de la carrera
 ID: id con el que se indentifica cada pregunta; por ejemplo P = pregunta 01 = numero de pregunta
 texto de la pregunta: es la pregunta que se le hace al participante
 dimension RIASEC: que letra se le asigna dependiendo de la respuesta
->>>>>>> 60a8b7dcfd7d19c9353eff04d6dbeca5563832b5
+
 
 #Carreras argentinas:
 - id sistema: es el id con el que esta identificada cada universidad
