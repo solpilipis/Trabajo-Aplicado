@@ -10,18 +10,24 @@ def mostrar_ranking(df_ranking, df_filtrado):
     for i in range(len(df_ranking)):
 
         print(f"{i+1}. {df_ranking.iloc[i]['Disciplina_Principal']}") 
-        
-    opcion = input("\nIngrese el número de la carrera: ")
     
-    if not opcion.isdigit(): 
+    while True: 
         
-        raise ValueError("Debe ingresar un número")  
+        opcion = input("\nIngrese el número de la carrera deseada para obtener más información: ")
+        
+        if not opcion.isdigit(): 
+        
+            raise ValueError("Debe ingresar un número") 
+            continue
     
-    opcion = int(opcion)
+        opcion = int(opcion)
         
-    if opcion < 1 or opcion > len(df_ranking): 
+        if opcion < 1 or opcion > len(df_ranking): 
         
-        raise ValueError(f"Debe ingresar un número entre 1 y {len(df_ranking)}.") 
+            raise ValueError(f"Debe ingresar un número entre 1 y {len(df_ranking)}.")  
+            continue 
+        
+        break
         
     carrera = df_ranking.iloc[opcion-1]["Disciplina_Principal"]
 
@@ -43,7 +49,6 @@ def mostrar_ranking(df_ranking, df_filtrado):
             
             print()
             
-
            
 
 

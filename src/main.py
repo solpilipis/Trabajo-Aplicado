@@ -9,27 +9,19 @@ print()
 
 df_carreras = cargar_datos("/Users/clarabaietti/Documents/Github/Trabajo-Aplicado/datos/Database_Carreras_Argentinas.csv") 
 
+print()
 print("Selecciona tus preferencias") 
 print("-------------------------")  
 print() 
 
-while True: 
+df_filtrado = filtrar_carreras(df_carreras) 
 
-        try:
-
-            df_filtrado = filtrar_carreras(df_carreras) #filtrar carreras tiene problemas, corregir.
-
-            break
-
-        except ValueError as error:
-
-            print('Error: ', error) 
-            
+print()         
 print("Test RIASEC: Responde las siguientes preguntas para obtener tu perfil.")  
 print("-------------------------")  
 print() 
 
-resultados = test_riasec()
+resultados = test_riasec("/Users/clarabaietti/Documents/Github/Trabajo-Aplicado/datos/Test_RIASEC.csv")
 
 codigo_usuario = generar_codigo_riasec(resultados) 
 
@@ -38,7 +30,6 @@ print("Tu perfil RIASEC es:", codigo_usuario)
 print()
 
 df_ranking = generar_ranking(codigo_usuario, df_filtrado)
- 
 
 while True:
 

@@ -37,7 +37,7 @@ def test_riasec(ruta):
     Diccionario cuyas claves son las letras de RIASEC y cuyos valroes son la suma de las respuestas del usuario para cada letra.
 
     """
-    df = pd.read_excel(ruta)
+    df = pd.read_csv(ruta)
     df['Dimensión RIASEC'] = df['Dimensión RIASEC'].str[0]
     
     resultados = {"R": 0, "I": 0, "A": 0, "S": 0, "E": 0, "C": 0}
@@ -51,16 +51,21 @@ def test_riasec(ruta):
     print("  1. Ignora el sueldo: no pienses si paga bien o mal.")
     print("  2. Ignora tus estudios: no importa si aún no sabes hacerlo.")
     
-    print("Escala:")
-    print("  [ 1 ] = Me disgusta mucho")
-    print("  [ 2 ] = Me disgusta")
-    print("  [ 3 ] = Neutral")
-    print("  [ 4 ] = Me gusta")
-    print("  [ 5 ] = Me gusta mucho")
     
-    for indice, fila in df.iterrows():
+    for indice, fila in df.iterrows(): 
+        
+        print()
+        print("Escala:")
+        print("  [ 1 ] = Me disgusta mucho")
+        print("  [ 2 ] = Me disgusta")
+        print("  [ 3 ] = Neutral")
+        print("  [ 4 ] = Me gusta")
+        print("  [ 5 ] = Me gusta mucho") 
+        print() 
+        
         pregunta = fila['Texto de la Pregunta (¿Qué tanto te gustaría...)']
-        dimension = fila['Dimensión RIASEC']
+        dimension = fila['Dimensión RIASEC'] 
+        
         while True:
             try:
                 respuesta = int(input(f"{pregunta}: "))
@@ -294,7 +299,8 @@ def generar_ranking(codigo_usuario, df_filtrado):
 
     df_ranking = df_ranking.sort_values(by="Score", ascending=False)
 
-    df_ranking = df_ranking.drop_duplicates(subset="Carrera_Base")
+    df_ranking = df_ranking.drop_duplicates(subset="Disciplina_Principal")
 
     return df_ranking.head(5)
+
 
