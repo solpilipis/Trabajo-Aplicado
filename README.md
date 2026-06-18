@@ -16,7 +16,7 @@ El objetivo del programa es abordar la problemática de la elección de carreras
 - Sol: filtrar_carreras
 - Olivia: cagar_datos / graficar_perfil / graficar_top5
 
-# Descripcion de los datos:
+# Descripcion de la fuente de datos:
 
 #Carreras argentinas:
 - id sistema: es el id con el que esta identificada cada universidad
@@ -43,7 +43,10 @@ El objetivo del programa es abordar la problemática de la elección de carreras
 el usuario debe primero responder preguntas sobre preferencias, ubicación y otras relevantes para la recomendacion de la universidad y luego responder el test RIASEC
 
 # Librerias utilizadas
-- Pandas
+- pandas
+- seaborn
+- streamlit
+- matplotlib.pyplot
 
 # Estructura del repositorio 
 - datos
@@ -55,7 +58,7 @@ el usuario debe primero responder preguntas sobre preferencias, ubicación y otr
    - funciones.py
    - visualizaciones.py
 - DS_store
-- README.md
+- README.md 
 - main.py
 - diagramas
   - main
@@ -66,7 +69,7 @@ el usuario debe primero responder preguntas sobre preferencias, ubicación y otr
   - generar_ranking
   - mostrar_listado_universidades
   - mostrar_perfil
-  - tesst_riasec
+  - test_riasec
 
 # Explicación breve de las funciones principales
 - cargar_datos: Lee la base de datos desde un archivo CSV con pandas, recorre las columnas y limpia los espacios en blanco de las columnas principales
@@ -81,7 +84,15 @@ el usuario debe primero responder preguntas sobre preferencias, ubicación y otr
 muestra por consola las carreras recomendadas, la duracion, el titulo, donde se estudia. muestra un grafico de barras comparando el perfil riasec (afinidad del 1 al 10 en el eje y, carreras eje x) , otro con el top 5 carreras recomendadas (eje y) y la duracion minima (eje x)
 
 # Diagramas de diseño.
-
+- calcular_score: "C:\Users\guadi\Desktop\GitHub\Trabajo-Aplicado\diagramas\calcular_score.png"
+- dibujar_grafico_top5: "C:\Users\guadi\Desktop\GitHub\Trabajo-Aplicado\diagramas\dibujar_grafico_top5.png"
+- filtrar_carreras: "C:\Users\guadi\Desktop\GitHub\Trabajo-Aplicado\diagramas\filtrar_carreras.png"
+- generar_codigo_riasec: "C:\Users\guadi\Desktop\GitHub\Trabajo-Aplicado\diagramas\generar_codigo_riasec.png"
+- generar_ranking: "C:\Users\guadi\Desktop\GitHub\Trabajo-Aplicado\diagramas\generar_ranking.png"
+- main: "C:\Users\guadi\Desktop\GitHub\Trabajo-Aplicado\diagramas\main.png"
+- mostrar_listado_universidades: "C:\Users\guadi\Desktop\GitHub\Trabajo-Aplicado\diagramas\mostrar_listado_universidades.png"
+- mostrar_perfil: "C:\Users\guadi\Desktop\GitHub\Trabajo-Aplicado\diagramas\mostrar_perfil.png"
+- test_riasec: "C:\Users\guadi\Desktop\GitHub\Trabajo-Aplicado\diagramas\test_riasec.png"
 
 # Declaración de uso de IA
 Utilizamos la IA para poder armar el dataset conjunto que usamos para el proyecto. Además, le pedimos métodos de pandas y streamlit para llevar a cabo el proyecto,
