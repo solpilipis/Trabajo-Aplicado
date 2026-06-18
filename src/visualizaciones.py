@@ -110,7 +110,7 @@ def mostrar_perfil(resultados):
    
     fig, ax = plt.subplots(figsize=(8, 4))
     
-    sns.barplot(x=dimensiones, y=puntajes, color="0f8b5d", ax=ax)
+    sns.barplot(x=dimensiones, y=puntajes, color="#0f8b5d", ax=ax)
     
     ax.set_title("Puntajes por Dimensión", fontsize=12, fontweight='bold')
     ax.set_ylabel("Puntaje")

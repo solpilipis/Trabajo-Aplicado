@@ -14,7 +14,20 @@ print("Selecciona tus preferencias ✅:")
 print("-------------------------------")  
 print() 
 
-df_filtrado = filtrar_carreras(df_carreras) 
+while True:
+ 
+    df_filtrado = filtrar_carreras(df_carreras) 
+ 
+    if df_filtrado.empty:
+        
+        print()
+        print("⚠️ No se encontraron carreras para los filtros seleccionados.")
+        print("Intenta ampliar la duración máxima o cambiar el tipo de título.")
+        print()
+    
+    else:
+        
+        break
 
 print()         
 print("📚 Test RIASEC: Responde las siguientes preguntas para obtener tu perfil.")  

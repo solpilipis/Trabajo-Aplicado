@@ -157,16 +157,14 @@ def filtrar_carreras(df_carreras):
     while True:
         
         try: 
-            tipo_gestion = input("Ingrese el número del tipo de universidad que prefiere: ").strip()
+            opcion_gestion = int(input("Ingrese el número del tipo de universidad que prefiere: "))
             print()
  
-            if opcion == 1:
-                
+            if opcion_gestion == 1:
                 tipo_gestion = "pública"
                 break
             
-            elif opcion == 2:
-                
+            elif opcion_gestion == 2:
                 tipo_gestion = "privada"
                 break
             
@@ -175,8 +173,8 @@ def filtrar_carreras(df_carreras):
                 print()
  
         except ValueError:
-            
             print("Error: Debe ingresar un número.")
+            print()
         
     #filtro tipo de título
     print("Tipo de título:") 
@@ -185,36 +183,30 @@ def filtrar_carreras(df_carreras):
     print("  2. Título Intermedio")
     print("  3. Otro")
     print()
-
+ 
     while True:
         
         try: 
-            
-            tipo_titulo = input("Ingrese el número del tipo de título que busca: ").strip()
+            opcion_titulo = int(input("Ingrese el número del tipo de título que busca: "))
             print()
         
-            if opcion == 1:
-            
+            if opcion_titulo == 1:
                 tipo_titulo = "grado"
                 break 
         
-            elif opcion == 2:
-            
+            elif opcion_titulo == 2:
                 tipo_titulo = "título intermedio"
                 break
         
-            elif opcion == 3:
-            
+            elif opcion_titulo == 3:
                 tipo_titulo = "otro"
                 break
         
             else: 
-            
                 print("Error: Ingrese 1, 2 o 3.")
                 print()
  
         except ValueError: 
-            
             print("Error: Debe ingresar un número.") 
             print()
     
@@ -229,7 +221,7 @@ def filtrar_carreras(df_carreras):
     else:
  
         condicion_titulo = ((df_carreras["Tipo"].str.lower() != "grado") & (df_carreras["Tipo"].str.lower() != "título intermedio"))
-    
+   
     #filtro duración máxima
     
     while True:
