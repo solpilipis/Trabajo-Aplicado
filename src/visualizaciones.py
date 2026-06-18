@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 import seaborn as sns
+import pandas as pd
 
 def mostrar_ranking(df_ranking, df_filtrado):
     """
