@@ -2,7 +2,7 @@
 
 
 # Interantes:
-- clara Baietti
+- Clara Baietti
 - Micaela Cohen
 - Guadalupe Silva
 - Sol Pilpis
@@ -14,7 +14,7 @@ El objetivo del programa es abordar la problemática de la elección de carreras
 - Micaela: generar_codigo_riasec
 - Guadalupe: hacer_cuestionario
 - Sol: filtrar_carreras
-- Olivia: cagas_datos / graficar_perfil / graficar_top5
+- Olivia: cagar_datos / graficar_perfil / graficar_top5
 
 # Descripcion de los datos:
 
@@ -73,7 +73,7 @@ muestra por consola las carreras recomendadas, la duracion, el titulo, donde se 
 # Diagramas de diseño.
 
 # Declaración de uso de IA
-nos ayudo a aramar el dataset conjutno y con los metodos de pandas en la funcion filtrar_carreras
-
+Utilizamos la IA para poder armar el dataset conjunto que usamos para el proyecto. Además, le pedimos métodos de pandas y streamlit para llevar a cabo el proyecto,
+sobretodo en filtrar_carreras y en las visualizaciones.m
 #  Notas o explicaciones adicionales para correr correctamente el programa
 
