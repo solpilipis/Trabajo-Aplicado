@@ -1,11 +1,15 @@
+import matplotlib.pyplot as plt
+import seaborn as sns
+
 def mostrar_ranking(df_ranking, df_filtrado):
 
     '''
     Muestra las 5 carreras recomendadas y permite
     al usuario elegir una para obtener más información.
     '''
-
-    print("\nTOP 5 CARRERAS RECOMENDADAS\n") 
+    print()
+    print("\n 🏅TOP 5 CARRERAS RECOMENDADAS 🏅 \n") 
+    print()
 
     for i in range(len(df_ranking)):
 
@@ -13,7 +17,9 @@ def mostrar_ranking(df_ranking, df_filtrado):
     
     while True: 
         
+        print()
         opcion = input("\nIngrese el número de la carrera deseada para obtener más información: ")
+        print()
         
         if not opcion.isdigit(): 
         
@@ -49,15 +55,6 @@ def mostrar_ranking(df_ranking, df_filtrado):
             
             print()
             
-           
-
-
-
-
-import streamlit as st
-import matplotlib.pyplot as plt
-import seaborn as sns
-import pandas as pd
 
 def mostrar_perfil(resultados):
     """
@@ -75,8 +72,8 @@ def mostrar_perfil(resultados):
 
     """
 
-    st.subheader("📊 Tu Perfil Vocacional")
-    
+    print("\n📊 Tu Perfil Vocacional\n")
+
     dimensiones = list(resultados.keys())
     puntajes = list(resultados.values())
    
@@ -94,10 +91,10 @@ def mostrar_perfil(resultados):
                     ha='center', va='center', xytext=(0, 8), 
                     textcoords='offset points', fontweight='bold')
 
-    st.pyplot(fig)
+    plt.show()
 
 
-def dibujar_grafico_top5(top_5_filtrado):
+def mostrar_grafico_top5(top_5_filtrado):
     """
     Dibuja un gráfico que compara la duración estimada de las carreras recomendadas. Muestra visualemente el tiempo mínimo base y la variación de años extras según la universidad.  
 
@@ -120,9 +117,14 @@ def dibujar_grafico_top5(top_5_filtrado):
     if top_5_filtrado is None or top_5_filtrado.empty:
         raise ValueError("No hay datos disponibles para generar el gráfico.")
 
-    st.header("🎯 Tus Carreras Recomendadas")
-    st.write("Comparativa de duración estimada en tu provincia (Base mínima en azul, variación por universidad en naranja):")
-    
+    print("\n🎯 Tus Carreras Recomendadas\n")
+    print("Comparativa de duración estimada en tu provincia (Base mínima en azul, variación por universidad en naranja):")
+
+    top_5_filtrado = top_5_filtrado.copy()
+    top_5_filtrado['Duracion_Num'] = (
+        top_5_filtrado['Duración'].str.extract(r'(\d+(?:\.\d+)?)')[0].astype(float)
+    )
+
     df_rangos = top_5_filtrado.groupby('Título', as_index=False)['Duracion_Num'].agg(['min', 'max'])
     df_rangos['variacion'] = df_rangos['max'] - df_rangos['min']
     
@@ -135,67 +137,14 @@ def dibujar_grafico_top5(top_5_filtrado):
     ax.set_xlabel("Años")
     ax.legend(loc="lower right")
     ax.grid(axis='x', linestyle=':', alpha=0.6)
-    st.pyplot(fig)
-
-
-def mostrar_listado_universidades(top_5_filtrado):
-    """
-    Crea un sistema interactivo de pestañas para explorar las universidades disponibles. Permite al usuario ver las sedes, requisitos y contactos de las facultades en su provincia.
-
-    Parameters
-    ----------
-    top_5_filtrado : TYPE
-        DESCRIPTION.
-
-    Raises
-    ------
-    ValueError
-        DESCRIPTION.
-
-    Returns
-    -------
-    None.
-        La función no retorna ningún valor, despliega las pestañas y tarjetas en Streamlit.
-
-    """
-    if top_5_filtrado is None or top_5_filtrado.empty:
-        raise ValueError("No hay datos disponibles para listar las universidades.")
-
-    st.header("🏛️ Dónde podés estudiar")
-    st.write("Hacé clic en las pestañas para ver las universidades de tu provincia que dictan cada carrera:")
-    
-    carreras_unicas = list(top_5_filtrado['Título'].unique())
-    pestanas = st.tabs([carrera.upper() for carrera in carreras_unicas])
-    
-    for i, carrera in enumerate(carreras_unicas):
-        with pestanas[i]:
-            universidades_de_carrera = top_5_filtrado[top_5_filtrado['Título'] == carrera]
-            st.info(f"Opciones locales para **{carrera}**:")
-            
-            for _, fila in universidades_de_carrera.iterrows():
-                with st.container(border=True):
-                    st.subheader(f"🏛️ {fila['Universidad']}")
-                    
-                    col1, col2 = st.columns(2)
-                    with col1:
-                        st.markdown(f"**🏢 Facultad/Sede:** {fila['Facultad']}")
-                        st.markdown(f"**⚖️ Gestión:** {fila['Gestion']}")
-                        st.markdown(f"**⏳ Duración en esta sede:** {fila['Duración']}")
-                    with col2:
-                        st.markdown(f"**🚪 Ingreso:** {fila['Ingreso']}")
-                        st.markdown(f"**📍 Dirección:** {fila['Domicilio']}")
-                    
-                    contactos = []
-                    if pd.notna(fila['Teléfono']): contactos.append(f"📞 {fila['Teléfono']}")
-                    if pd.notna(fila['Web']): contactos.append(f"🌐 [{fila['Web']}](http://{fila['Web']})")
-                    if pd.notna(fila['Mail']): contactos.append(f"📧 {fila['Mail']}")
-                    
-                    if contactos:
-                        st.caption("Vías de Contacto: " + " | ".join(contactos))
-                    else:
-                        st.caption("⚠️ *No se registraron datos de contacto para esta sede.*")
-                    
-                    st.write("")
+    plt.tight_layout()
+    plt.show()
+                        
+                        
+                        
+                        
+                        
+                        
                         
                         
                         
