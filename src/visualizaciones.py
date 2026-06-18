@@ -1,6 +1,12 @@
+<<<<<<< Updated upstream
 import streamlit as st
 import matplotlib.pyplot as plt
 import seaborn as sns
+=======
+import matplotlib.pyplot as plt
+import seaborn as sns
+import pandas as pd
+>>>>>>> Stashed changes
 
 def mostrar_ranking(df_ranking, df_filtrado):
 
@@ -73,8 +79,8 @@ def mostrar_perfil(resultados):
 
     """
 
-    st.subheader("📊 Tu Perfil Vocacional")
-    
+    print("\n📊 Tu Perfil Vocacional\n")
+
     dimensiones = list(resultados.keys())
     puntajes = list(resultados.values())
    
@@ -92,7 +98,7 @@ def mostrar_perfil(resultados):
                     ha='center', va='center', xytext=(0, 8), 
                     textcoords='offset points', fontweight='bold')
 
-    st.pyplot(fig)
+    plt.show()
 
 
 def mostrar_grafico_top5(top_5_filtrado):
@@ -118,9 +124,14 @@ def mostrar_grafico_top5(top_5_filtrado):
     if top_5_filtrado is None or top_5_filtrado.empty:
         raise ValueError("No hay datos disponibles para generar el gráfico.")
 
-    st.header("🎯 Tus Carreras Recomendadas")
-    st.write("Comparativa de duración estimada en tu provincia (Base mínima en azul, variación por universidad en naranja):")
-    
+    print("\n🎯 Tus Carreras Recomendadas\n")
+    print("Comparativa de duración estimada en tu provincia (Base mínima en azul, variación por universidad en naranja):")
+
+    top_5_filtrado = top_5_filtrado.copy()
+    top_5_filtrado['Duracion_Num'] = (
+        top_5_filtrado['Duración'].str.extract(r'(\d+(?:\.\d+)?)')[0].astype(float)
+    )
+
     df_rangos = top_5_filtrado.groupby('Título', as_index=False)['Duracion_Num'].agg(['min', 'max'])
     df_rangos['variacion'] = df_rangos['max'] - df_rangos['min']
     
@@ -133,7 +144,17 @@ def mostrar_grafico_top5(top_5_filtrado):
     ax.set_xlabel("Años")
     ax.legend(loc="lower right")
     ax.grid(axis='x', linestyle=':', alpha=0.6)
+<<<<<<< Updated upstream
     st.pyplot(fig)
+=======
+    plt.tight_layout()
+    plt.show()
+                        
+                        
+                        
+                        
+                        
+>>>>>>> Stashed changes
                         
                         
                         
