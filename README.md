@@ -9,12 +9,12 @@
 - Olivia Salmoyraghi
 
 # Objetivo:
-El objetivo del programa es abordar la problemática de la elección de carreras, para eso realiza preguntas del test RIASEC, en base a al puntaje que  obtiene cada letra las ordena de forma específica (por ejemplo SIAREC) y lo cruza con un dataset donde están las carreras cada una con un orden distinto de las letras y en base a eso te recomienda 5 posibles principales. El trabajo fue dividio en 5 partes + el main:
+El objetivo del programa es abordar la problemática de la elección de carreras, para eso realiza preguntas del test RIASEC, en base a al puntaje que  obtiene cada letra las ordena de forma específica (por ejemplo SIAREC) y lo cruza con un dataset donde están las carreras cada una con un orden distinto de las letras y en base a eso te recomienda 5 posibles principales. El trabajo fue dividió en 5 partes + el main:
 - Clara: calcular_score / generar_ranking / mostrar_ranking / main.py
 - Micaela: generar_codigo_riasec
 - Guadalupe: hacer_cuestionario / Armado de datasets.
 - Sol: filtrar_carreras
-- Olivia: cagar_datos / graficar_perfil / graficar_top5
+- Olivia: cargar_datos / graficar_perfil / graficar_top5
 
 # Descripcion de los datos:
 El csv de carreras argentinas fue extraído con la ayuda de la IA de la siguiente página del gobierno: https://guiadecarreras.siu.edu.ar/
@@ -34,10 +34,10 @@ El csv del test RIASEC está basado en las traducciones oficiales al español de
 - mail: mail de contacto para el ingreso
 - tipo de gestion: Publica o privada
 - RIASEC_codes: son las posibles combinaciones de las letras RIASEC dependiendo del score
-- disciplian principal: descripcion geenral del area de desempeño de la carrera
+- disciplian principal: descripcion general del area de desempeño de la carrera
 
 #Test RIASEC
-- ID: id con el que se indentifica cada pregunta; por ejemplo P = pregunta 01 = numero de pregunta 
+- ID: id con el que se identifica cada pregunta; por ejemplo P = pregunta 01 = numero de pregunta 
 - texto de la pregunta: es la pregunta que se le hace al participante 
 - dimension RIASEC: que letra se le asigna dependiendo de la respuesta 
 
@@ -79,7 +79,7 @@ según corresponda.
 - calcular_score: Compara la combinación de letras del usuario con las de una carrera y calcula un puntaje de afinidad, otorgando más puntos si coinciden en las primeras posiciones.
 - generar_codigo_riasec: ordena las letras del mayor al menor puntaje obtenido
 - generar_ranking: evalúa la afinidad de todas las carreras filtradas contra el perfil del usuario, elimina opciones duplicadas y las 5 mejores recomendaciones.
-- mostrar_ranking: muestra en consola las carreras recomendadas y le pide al usuario el numero de la carrera elegida y en base a eso y a la base de datos ya filtrada por la función filtrar_carreras, le muestra el titulo, la duracion, donde la puende estudiar, etc.
+- mostrar_ranking: muestra en consola las carreras recomendadas y le pide al usuario el numero de la carrera elegida y en base a eso y a la base de datos ya filtrada por la función filtrar_carreras, le muestra el titulo, la duracion, donde la pueden estudiar, etc.
   
 # Resultados, salidas, métricas, gráficos o funcionalidades generadas, según corresponda
 muestra por consola las carreras recomendadas, la duracion, el titulo, donde se estudia. muestra un grafico de barras comparando el perfil riasec (afinidad del 1 al 10 en el eje y, carreras eje x) , otro con el top 5 carreras recomendadas (eje y) y la duracion minima (eje x)
