@@ -58,8 +58,15 @@ el usuario debe primero responder preguntas sobre preferencias, ubicación y otr
 - README.md
 - main.py
 - diagramas
+  - main
   - calcular_score
-  - dibujar_grafico_
+  - dibujar_grafico_top5
+  - filtrar_carreras
+  - generar_codigo_riasec
+  - generar_ranking
+  - mostrar_listado_universidades
+  - mostrar_perfil
+  - tesst_riasec
 
 # Explicación breve de las funciones principales
 - cargar_datos: Lee la base de datos desde un archivo CSV con pandas, recorre las columnas y limpia los espacios en blanco de las columnas principales
