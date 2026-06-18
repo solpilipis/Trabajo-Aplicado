@@ -1,6 +1,6 @@
-from funciones import cargar_datos, test_riasec, filtrar_carreras, generar_codigo_riasec, generar_ranking
+from src.funciones import cargar_datos, test_riasec, filtrar_carreras, generar_codigo_riasec, generar_ranking
 
-from visualizaciones import mostrar_ranking, mostrar_grafico_top5, mostrar_perfil
+from src.visualizaciones import mostrar_ranking, mostrar_grafico_top5, mostrar_perfil
 
 print()
 print("🎓📚 RECOMENDADOR DE CARRERAS 🎓📚  ") 

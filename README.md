@@ -10,9 +10,9 @@
 
 # Objetivo:
 El objetivo del programa es abordar la problemática de la elección de carreras, para eso realiza preguntas del test RIASEC, en base a al puntaje que  obtiene cada letra las ordena de forma específica (por ejemplo SIAREC) y lo cruza con un dataset donde están las carreras cada una con un orden distinto de las letras y en base a eso te recomienda 5 posibles principales. El trabajo fue dividio en 5 partes + el main:
-- Clara: calcular_score / generar_ranking / mostrar_ranking
+- Clara: calcular_score / generar_ranking / mostrar_ranking / main.py
 - Micaela: generar_codigo_riasec
-- Guadalupe: hacer_cuestionario
+- Guadalupe: hacer_cuestionario / Armado de datasets.
 - Sol: filtrar_carreras
 - Olivia: cagar_datos / graficar_perfil / graficar_top5
 
@@ -85,9 +85,16 @@ según corresponda.
 muestra por consola las carreras recomendadas, la duracion, el titulo, donde se estudia. muestra un grafico de barras comparando el perfil riasec (afinidad del 1 al 10 en el eje y, carreras eje x) , otro con el top 5 carreras recomendadas (eje y) y la duracion minima (eje x)
 
 # Diagramas de diseño.
+Ubicados en la carpeta "diagramas".
 
 # Declaración de uso de IA
-Utilizamos la IA para poder armar el dataset conjunto que usamos para el proyecto. Además, le pedimos métodos de pandas y streamlit para llevar a cabo el proyecto,
-sobretodo en filtrar_carreras y en las visualizaciones.m
-#  Notas o explicaciones adicionales para correr correctamente el programa
+Durante el desarrollo de este proyecto, utilizamos herramientas de Inteligencia Artificial  como asistentes de programación y estructuración de datos. Su uso se dividió en dos áreas principales:
 
+1. Armado y limpieza del Dataset:
+Utilizamos IA para estructurar y extraer el dataset conjunto de carreras argentinas basado en la web del gobierno, y para generar la lógica de cruce con los perfiles RIASEC.
+
+2. Asistencia en código y librerías:
+Consultamos a la IA para resolver dudas específicas sobre métodos de la librería pandas y para optimizar la configuración visual de los gráficos generados con matplotlib y seaborn. Además, se utilizó para detectar y resolver errores que nosotras no encontrábamos.  
+
+#  Notas o explicaciones adicionales para correr correctamente el programa
+Descubrimos limitaciones del test RIASEC durante el desarrollo de este proyecto. Debido a su poca especificidad, la recomendación de carreras puede ser mala a veces.
