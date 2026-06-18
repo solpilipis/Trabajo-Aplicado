@@ -55,6 +55,8 @@ def test_riasec(ruta):
     
     for indice, fila in df.iterrows(): #Recorre fila por fila.
         
+        print()
+        print()
         print(f"PREGUNTA {numero_pregunta} DE {total_preguntas}")
         print()
         print("Escala:") 
