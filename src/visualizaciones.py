@@ -1,81 +1,90 @@
 import matplotlib.pyplot as plt
 import seaborn as sns
-import pandas as pd
 
 def mostrar_ranking(df_ranking, df_filtrado):
-    """
+
+    '''
     Muestra las 5 carreras recomendadas y permite
     al usuario elegir una para obtener más información.
-
-    Parameters
-    ----------
-    df_ranking : pandas.Dataframe
-        Tabla que ocntiene el listado resumido de las 5 carreras recomendadas. 
-    df_filtrado : pandas.Dataframe
-        Tabla completa con las opciones académicas filtradas previamente según las 
-        preferencias del usuario (localidad, tipo de gestión, tipo de título y duración máxima).
-
-    Raises
-    ------
-    ValueError
-        Si el usuario ingresa un texto en lugar de un número, o si el número seleccionado 
-        está fuera del rango válido de opciones (menor a 1 o mayor al tamaño del ranking).
-
-    Returns
-    -------
-    None.
-    La función no retorna ningún valor; imprime los datos directamente en la terminal.
-
-    """
-
-    
-    print()
-    print("\n 🏅TOP 5 CARRERAS RECOMENDADAS 🏅 \n") 
-    print()
-
-    for i in range(len(df_ranking)):
-
-        print(f"{i+1}. {df_ranking.iloc[i]['Disciplina_Principal']}") 
-    
-    while True: 
-        
-        print()
-        opcion = input("\nIngrese el número de la carrera deseada para obtener más información: ")
-        print()
-        
-        if not opcion.isdigit(): 
-        
-            raise ValueError("Debe ingresar un número") 
-            continue
-    
-        opcion = int(opcion)
-        
-        if opcion < 1 or opcion > len(df_ranking): 
-          
-            raise ValueError(f"Debe ingresar un número entre 1 y {len(df_ranking)}.")  
-            continue 
-        
-        break
-        
-    carrera = df_ranking.iloc[opcion-1]["Disciplina_Principal"]
-
-    print(f"\nOpciones para estudiar {carrera}:\n")
-
-    for i in df_filtrado.index:
-
-        if df_filtrado.loc[i, "Disciplina_Principal"] == carrera:
-
-            print(f"Universidad: {df_filtrado.loc[i, 'Universidad']}")
-
-            print(f"Título: {df_filtrado.loc[i, 'Título']}")
+    '''
+    TOPE = 20  # máximo de carreras a mostrar aunque el empate sea más grande
+    mostrando = 5
+ 
+    while True:
+ 
+       carreras_mostradas = df_ranking.head(mostrando)
+       cantidad = len(carreras_mostradas)
+ 
+       print("\n🏅 TOP CARRERAS RECOMENDADAS 🏅\n")
+ 
+       for i in range(cantidad):
+           print(f"{i+1}. {carreras_mostradas.iloc[i]['Disciplina_Principal']}")
+ 
+       hay_empate = (
+           mostrando < TOPE
+           and len(df_ranking) > mostrando
+           and df_ranking.iloc[mostrando - 1]["Score"] == df_ranking.iloc[mostrando]["Score"]
+       )
+ 
+       if hay_empate:
+           opcion_ver_mas = cantidad + 1
+           opcion_finalizar = cantidad + 2
+           print(f"{opcion_ver_mas}. Ver más carreras (hay empate con la última)")
+       else:
+           opcion_ver_mas = None
+           opcion_finalizar = cantidad + 1
+ 
+       print(f"{opcion_finalizar}. Finalizar")
+ 
+       while True:
+ 
+           opcion = input("\nIngrese una opción: ").strip() 
+           
+           if not opcion.isdigit():
+               print("Error: Debe ingresar un número.")
+               continue
+ 
+           opcion = int(opcion)
+ 
+           if opcion < 1 or opcion > opcion_finalizar:
+               print(f"Error: Debe ingresar un número entre 1 y {opcion_finalizar}.")
+               continue
+ 
+           break
+ 
+       if opcion == opcion_finalizar:
+ 
+           print("\n¡Gracias por usar el recomendador de carreras! 👋")
+           break
+ 
+       elif hay_empate and opcion == opcion_ver_mas:
+ 
+           mostrando = min(mostrando + 5, len(df_ranking))
+           continue
+ 
+       else:
+ 
+           carrera = carreras_mostradas.iloc[opcion - 1]["Disciplina_Principal"]
+ 
+           print(f"\nOpciones para estudiar {carrera}:\n") 
+           
+           for i in df_filtrado.index:
+ 
+                if df_filtrado.loc[i, "Disciplina_Principal"] == carrera:
+ 
+                    print(f"Universidad: {df_filtrado.loc[i, 'Universidad']}")
+                    print(f"Título: {df_filtrado.loc[i, 'Título']}")
+                    print(f"Duración: {df_filtrado.loc[i, 'Duración']}")
+                    print(f"Dirección: {df_filtrado.loc[i, 'Domicilio']}")  
+                    print(f"Teléfono: {df_filtrado.loc[i, 'Teléfono']}")   
+                    print(f"Mail: {df_filtrado.loc[i, 'Mail']}")  
+                    print(f"Sitio web: {df_filtrado.loc[i, 'Web']}")
+                    print()
+           
+           print() 
+           input("Presione Enter para volver al menú.") 
+           print()
             
-            print(f"Duración: {df_filtrado.loc[i, 'Duración']}") 
-            
-            print(f"Ubicada en: {df_filtrado.loc[i, 'Provincia']}")
-
-            print(f"Sitio web: {df_filtrado.loc[i, 'Web']}") 
-            
-            print()
             
 
 def mostrar_perfil(resultados):
