@@ -13,7 +13,7 @@ El objetivo del programa es abordar la problemática de la elección de carreras
 
 El trabajo se dividió en 5 partes principales:
 
-- Clara: calcular_score / generar_ranking / mostrar_ranking / main.py
+- Clara: calcular_score / generar_ranking / mostrar_ranking 
 - Micaela: generar_codigo_riasec
 - Guadalupe: hacer_cuestionario / Armado de datasets.
 - Sol: filtrar_carreras
