@@ -80,7 +80,7 @@ def test_riasec(ruta):
                
                 if respuesta < 1 or respuesta > 5: 
                     print()
-                    print("El valor debe ser entre 1 y 5.") 
+                    print("Error: El valor debe ser entre 1 y 5.") 
                     print()
                     
                 else:
@@ -89,7 +89,7 @@ def test_riasec(ruta):
                     
             except ValueError: 
                 print()
-                print("La respuesta debe ser un número.") 
+                print("Error: La respuesta debe ser un número.") 
                 print()
         numero_pregunta += 1
     
@@ -144,7 +144,8 @@ def filtrar_carreras(df_carreras):
             opcion = int(input("Ingrese el número de la provincia en la que te gustaría estudiar: ")) 
             print()
  
-            if opcion < 1 or opcion > len(provincias_validas):
+            if opcion < 1 or opcion > len(provincias_validas): 
+                print()
                 print(f"Error: Ingrese un número entre 1 y {len(provincias_validas)}.") 
                 print()
  
@@ -155,6 +156,7 @@ def filtrar_carreras(df_carreras):
  
         except ValueError: 
             
+        
             print("Error: Debe ingresar un número válido.") 
             print()
         
@@ -180,11 +182,13 @@ def filtrar_carreras(df_carreras):
                 tipo_gestion = "privada"
                 break
             
-            else:
+            else: 
+                print()
                 print("Error: Ingrese 1 o 2.") 
                 print()
  
-        except ValueError:
+        except ValueError: 
+            print()
             print("Error: Debe ingresar un número.")
             print()
         
@@ -215,10 +219,12 @@ def filtrar_carreras(df_carreras):
                 break
         
             else: 
+                print()
                 print("Error: Ingrese 1, 2 o 3.")
                 print()
  
         except ValueError: 
+            print()
             print("Error: Debe ingresar un número.") 
             print()
     
@@ -247,6 +253,7 @@ def filtrar_carreras(df_carreras):
             
             if duracion_max < 1 or duracion_max > 10:  
                 
+                print()
                 print("Error: La duración debe ser un número entre 1 y 10.")  
                 print()
             
@@ -256,6 +263,7 @@ def filtrar_carreras(df_carreras):
         
         except ValueError: 
             
+            print()
             print("Error: La duración debe ser un número.")  
             print()
     
