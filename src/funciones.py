@@ -2,7 +2,8 @@ import pandas as pd
 
 def cargar_datos(ruta_csv):
     """
-
+    Carga los datos de la base de datos de Carreras Argentinas. 
+    
     Parameters
     ----------
     ruta_csv : scr
@@ -103,7 +104,7 @@ def filtrar_carreras(df_carreras):
     
     """
     Pide al usuario una provincia, un tipo de gestión (Pública/Privada), un tipo de titulo (Grado, Titulo intermedio, otro) y la duracion maxima deseada
-    filtra el DataFrame recibido y devuelve uno acotando solo las filas que coinciden
+    filtra el DataFrame recibido y devuelve uno acotando solo las filas que coinciden.
 
     Parametros
     -------------
@@ -113,7 +114,7 @@ def filtrar_carreras(df_carreras):
     Returns
     -------------
     df_filtrado : DataFrame
-        Dataframe nuevo y mas chico que contiene unicamente la informacion que cumplen las dos condiciones que ingreso el usuario
+        Dataframe nuevo y mas chico que contiene unicamente la informacion que cumplen las cuatro condiciones que ingreso el usuario
         
     """
     #filtro provincia  
@@ -370,10 +371,13 @@ def generar_ranking(codigo_usuario, df_filtrado):
     Parameters 
     ---------- 
     codigo_usuario: str. Código RIASEC de 6 caracteres asociado al usuario según sus respuestas 
-                    al cuestionario 
+                    al cuestionario  
+    
+    df_filtrado: dataframe. dataframe mas chico que contiene unicamente la informacion que cumplen las cuatro condiciones que eligió el usuario
+        
     Returns
     ------- 
-    df_ranking: dataframe con disciplinas principales y su score correspondiente respecto al perfil
+    df_ranking: dataframe. dataframe con disciplinas principales y su score correspondiente respecto al perfil
                 del usuario. 
     ''' 
     df_ranking = df_filtrado.copy()

@@ -4,8 +4,8 @@ import seaborn as sns
 def mostrar_ranking(df_ranking, df_filtrado):
 
     '''
-    Muestra las 5 carreras más recomendadas y permite al usuario elegir una para obtener más información,
-    ver más carreras en caso de empate o finalizar el programa. 
+    Muestra las carreras más recomendadas (empezando por las primeras 5) y permite al usuario elegir una 
+    para obtener más información, ver más carreras en caso de empate con la última posición, o finalizar el programa.
     
     Parameters 
     ----------
@@ -144,18 +144,12 @@ def mostrar_perfil(resultados):
 def mostrar_grafico_top5(top_5_filtrado):
     """
     Dibuja un gráfico que compara la duración estimada de las carreras recomendadas. 
-    Muestra visualemente el tiempo mínimo base y la variación de años extras según la universidad.  
+    Muestra visualmente el tiempo mínimo base y la variación de años extras según la universidad.  
 
     Parameters
     ----------
     top_5_filtrado : pandas.Dataframe
-       Una tabal de datos de las carreras recomendadas. 
-
-    Raises
-    ------
-    ValueError
-        Si el DataFrame es None o está vacío, interrumpiendo 
-        la ejecución para evitar fallos en el dibujado.  
+       Una tabla de datos de las carreras recomendadas. 
 
     Returns
     -------
@@ -163,9 +157,6 @@ def mostrar_grafico_top5(top_5_filtrado):
         La función no retorna ningún valor; procesa los datos y abre una ventana emergente conel gráfico.  
 
     """
-    if top_5_filtrado is None or top_5_filtrado.empty:
-        raise ValueError("No hay datos disponibles para generar el gráfico.")
-
     print("\n🎯 Tus Carreras Recomendadas\n")
     print("Comparativa de duración estimada en tu provincia (Base mínima en verde, variación por universidad en naranja):")
 
