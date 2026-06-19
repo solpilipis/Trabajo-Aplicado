@@ -88,13 +88,13 @@ def mostrar_ranking(df_ranking, df_filtrado):
  
                 if df_filtrado.loc[i, "Disciplina_Principal"] == carrera:
  
-                    print(f"Universidad: {df_filtrado.loc[i, 'Universidad']}")
-                    print(f"Título: {df_filtrado.loc[i, 'Título']}")
-                    print(f"Duración: {df_filtrado.loc[i, 'Duración']}")
-                    print(f"Dirección: {df_filtrado.loc[i, 'Domicilio']}")  
-                    print(f"Teléfono: {df_filtrado.loc[i, 'Teléfono']}")   
-                    print(f"Mail: {df_filtrado.loc[i, 'Mail']}")  
-                    print(f"Sitio web: {df_filtrado.loc[i, 'Web']}")
+                    print(f"🏫 Universidad: {df_filtrado.loc[i, 'Universidad']}")
+                    print(f"📝 Título: {df_filtrado.loc[i, 'Título']}")
+                    print(f"🕓 Duración: {df_filtrado.loc[i, 'Duración']}")
+                    print(f"📍 Dirección: {df_filtrado.loc[i, 'Domicilio']}")  
+                    print(f"📞 Teléfono: {df_filtrado.loc[i, 'Teléfono']}")   
+                    print(f"📥 Mail: {df_filtrado.loc[i, 'Mail']}")  
+                    print(f"💻 Sitio web: {df_filtrado.loc[i, 'Web']}")
                     print()
            
            print() 
