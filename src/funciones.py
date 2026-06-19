@@ -80,7 +80,7 @@ def test_riasec(ruta):
                
                 if respuesta < 1 or respuesta > 5: 
                     print()
-                    print("El valor debe ser entre 1 y 5.") 
+                    print("Error: El valor debe ser entre 1 y 5.") 
                     print()
                     
                 else:
@@ -89,7 +89,7 @@ def test_riasec(ruta):
                     
             except ValueError: 
                 print()
-                print("La respuesta debe ser un número.") 
+                print("Error: La respuesta debe ser un número.") 
                 print()
         numero_pregunta += 1
     
