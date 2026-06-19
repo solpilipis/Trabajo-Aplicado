@@ -1,4 +1,4 @@
-# Recomendador de carreras a partir de test RIASEC 
+## Recomendador de carreras a partir del test RIASEC 
 
 
 # Integrantes:
@@ -9,7 +9,10 @@
 - Olivia Salmoyraghi
 
 # Objetivo:
-El objetivo del programa es abordar la problemática de la elección de carreras, para eso realiza preguntas del test RIASEC, en base a al puntaje que  obtiene cada letra las ordena de forma específica (por ejemplo SIAREC) y lo cruza con un dataset donde están las carreras cada una con un orden distinto de las letras y en base a eso te recomienda 5 posibles principales. El trabajo fue dividió en 5 partes + el main:
+El objetivo del programa es abordar la problemática de la elección de carreras. Para ello, se realizan preguntas del test RIASEC y, basándose en el puntaje que obtiene cada dimensión, se ordena de forma específica el perfil del usuario (por ejemplo, SIAREC). Luego, esto se cruza con un dataset de carreras, cada una con un código RIASEC asignado, y en base a la compatibilidad, el sistema recomienda las 5 opciones principales.
+
+El trabajo se dividió en 5 partes principales:
+
 - Clara: calcular_score / generar_ranking / mostrar_ranking / main.py
 - Micaela: generar_codigo_riasec
 - Guadalupe: hacer_cuestionario / Armado de datasets.
@@ -22,24 +25,25 @@ Después con código y uso de IA, se le agregaron columnas para cruzar la inform
 El csv del test RIASEC está basado en las traducciones oficiales al español del O*NET Interest Profiler Short Form que utiliza el gobierno estadounidense en su plataforma de exploración de carreras para hispanohablantes, llamada "Mi Próximo Paso". 
 
 # Carreras argentinas:
-- id sistema: es el id con el que esta identificada cada universidad
-- universidad: es la universidad
-- titulo: es el nombre del titulo con el que te recibis
-- tipo: si es una carrera de grado, intermedio, tecnicatura, etc.
-- duracion: cuantos años dura la carrera
-- ingreso: si hay que hacer curso de ingreso, examen, o cualquier otra condicion de ingreso a la universidad
-- domicilio: donde queda la universidad
-- telefono: telefono de contacto de la univeridad
-- web: pagina web de la universidad
-- mail: mail de contacto para el ingreso
-- tipo de gestion: Publica o privada
-- RIASEC_codes: son las posibles combinaciones de las letras RIASEC dependiendo del score
-- disciplian principal: descripcion general del area de desempeño de la carrera
+- ID_SISTEMA: Es el id con el que esta identificada cada universidad.
+- Universidad: Es la universidad.
+- Título: Es el nombre del título de la carrera.
+- Tipo: Determina si es una carrera de grado, un título intermedio, una tecnicatura, etc.
+- Duración: Duración en años de la carrera.
+- Ingreso: Condición de entrada a la universidad.
+- Domicilio: Ubicación de la universidad.
+- Telefono: Telefono de contacto de la universidad.
+- Web: Página web de la universidad.
+- Mail: Mail de contacto para el ingreso.
+- Tipo_Gestion: Pública o privada.
+- RIASEC_codes: Perfiles RIASEC a los cuales se les recomendaría la carrera.
+- Disciplina_Principal: Descripción general del área de desempeño de la carrera.
+- Provincia: Provincia donde se ubica la universidad.
 
 #Test RIASEC
-- ID: id con el que se identifica cada pregunta; por ejemplo P = pregunta 01 = numero de pregunta 
-- texto de la pregunta: es la pregunta que se le hace al participante 
-- dimension RIASEC: que letra se le asigna dependiendo de la respuesta 
+- ID: Id con el que se identifica cada pregunta (número de pregunta).
+- Texto de la Pregunta (¿Qué tanto te gustaría...): Pregunta del test RIASEC.
+- Dimensión RIASEC: Dimensión RIASEC representada por la primera letra de su nombre y su aclaración.
 
 
 # Instrucciones para ejecutar el programa: 
@@ -48,11 +52,13 @@ El csv del test RIASEC está basado en las traducciones oficiales al español de
 2) Instalar dependencias: Abre tu terminal, navega hasta la carpeta raíz del proyecto y ejecuta el siguiente comando para instalar las librerías necesarias: pip install -r requirements.txt
 
 3) Copia las rutas de los archivos Database_Carreras_Argentinas y Test_RIASEC de tu computadora. Pegalos en el main.py en:
-ruta_carreras = "La ruta del csv de las carreras."
-ruta_test = "La ruta del test RIASEC."
+
+- ruta_carreras = "La ruta del csv de las carreras."
+- ruta_test = "La ruta del test RIASEC."
+
 según corresponda.
 
-4) Ejecución: En la terminal, ejecuta el archivo principal con el comando: python main.py
+4) Ejecutar el código.
 
 5) Interacción: Una vez que el programa inicie en la consola, deberás ingresar tus preferencias (provincia, tipo de gestión, duracion maxima y tipo de titulo), y luego responder a las preguntas del test RIASEC calificando del 1 al 5 según tu grado de afinidad. Finalmente, el sistema te mostrará tu código, las carreras recomendadas y los gráficos de tu perfil.
 
@@ -65,8 +71,8 @@ Nota: Si el programa se ejecuta desde entornos como Spyder y los gráficos no se
 
 # Estructura del repositorio 
 - datos
-    - Database_Carreras_Argentinas
-    - Test_RIASEC.xlsx
+    - Database_Carreras_Argentinas.csv
+    - Test_RIASEC.csv
 - src
    - funciones.py
    - visualizaciones.py
@@ -75,16 +81,16 @@ Nota: Si el programa se ejecuta desde entornos como Spyder y los gráficos no se
 - main.py
 
 # Explicación breve de las funciones principales
-- cargar_datos: Lee la base de datos desde un archivo CSV con pandas, recorre las columnas y limpia los espacios en blanco de las columnas principales
-- test_riasec: le hace las preguntas del test RIASEC al usuario, calificando las respuestas del 1-5, verifica que las respuestas sean validas y suma en un diccionario el valor que se le indica a cada letra
-- filtrar_carreras: Pide al usuario una provincia y un tipo de gestión (Pública/Privada), filtra el DataFrame recibido y devuelve solo las filas que coinciden.
-- calcular_score: Compara la combinación de letras del usuario con las de una carrera y calcula un puntaje de afinidad, otorgando más puntos si coinciden en las primeras posiciones.
-- generar_codigo_riasec: ordena las letras del mayor al menor puntaje obtenido
-- generar_ranking: evalúa la afinidad de todas las carreras filtradas contra el perfil del usuario, elimina opciones duplicadas y las 5 mejores recomendaciones.
-- mostrar_ranking: muestra en consola las carreras recomendadas y le pide al usuario el numero de la carrera elegida y en base a eso y a la base de datos ya filtrada por la función filtrar_carreras, le muestra el titulo, la duracion, donde la pueden estudiar, etc.
+- cargar_datos: Lee la base de datos desde un archivo CSV con pandas, recorre las columnas y limpia los espacios en blanco de las columnas principales.
+- test_riasec: Le hace las preguntas del test RIASEC al usuario, calificando las respuestas del 1-5. Verifica que las respuestas sean válidas y suma en un diccionario el valor que se le indica a cada letra (dimensión).
+- filtrar_carreras: Pide al usuario una provincia, un tipo de gestión (Pública o privada), un tipo de título (de grado, intermedio o tecnicatura) y una duración máxima en años. Filtra el DataFrame recibido y devuelve solo las filas que coinciden.
+- calcular_score: Compara la combinación de letras del usuario (su perfil) con las de una carrera y calcula un puntaje de afinidad, otorgando más puntos si coinciden en las primeras posiciones.
+- generar_codigo_riasec: Ordena las letras del perfil del mayor al menor puntaje obtenido.
+- generar_ranking: Evalúa la afinidad de todas las carreras filtradas con el perfil del usuario, elimina opciones duplicadas y devuelve las 5 mejores recomendaciones.
+- mostrar_ranking: Muestra por consola las carreras recomendadas y le pide al usuario el número de la carrera elegida y en base a eso y a la base de datos ya filtrada por la función filtrar_carreras, le muestra el titulo, la duración, donde la pueden estudiar, etc.
   
 # Resultados, salidas, métricas, gráficos o funcionalidades generadas, según corresponda
-muestra por consola las carreras recomendadas, la duracion, el titulo, donde se estudia. muestra un grafico de barras comparando el perfil riasec (afinidad del 1 al 10 en el eje y, carreras eje x) , otro con el top 5 carreras recomendadas (eje y) y la duracion minima (eje x)
+Muestra por consola las carreras recomendadas, la duración, el título, donde se estudia. Muestra un gráfico de barras comparando el perfil RIASEC (afinidad del 1 al 10 en el eje y, carreras eje x) , otro con el top 5 carreras recomendadas (eje y) y la duración mínima (eje x).
 
 # Diagramas de diseño.
 Ubicados en la carpeta "diagramas".
@@ -99,4 +105,4 @@ Utilizamos IA para estructurar y extraer el dataset conjunto de carreras argenti
 Consultamos a la IA para resolver dudas específicas sobre métodos de la librería pandas y para optimizar la configuración visual de los gráficos generados con matplotlib y seaborn. Además, se utilizó para detectar y resolver errores que nosotras no encontrábamos.  
 
 #  Notas o explicaciones adicionales para correr correctamente el programa
-Descubrimos limitaciones del test RIASEC durante el desarrollo de este proyecto. Debido a su poca especificidad, la recomendación de carreras puede ser mala a veces.
+Durante el desarrollo de este proyecto descubrimos algunas limitaciones metodológicas del test RIASEC. Debido a su naturaleza generalista y poca especificidad, la recomendación final de carreras puede resultar poco precisa en algunas ocasiones.
