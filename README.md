@@ -88,9 +88,10 @@ Nota: Si el programa se ejecuta desde entornos como Spyder y los gráficos no se
 - generar_codigo_riasec: Ordena las letras del perfil del mayor al menor puntaje obtenido.
 - generar_ranking: Evalúa la afinidad de todas las carreras filtradas con el perfil del usuario, elimina opciones duplicadas y devuelve las 5 mejores recomendaciones.
 - mostrar_ranking: Muestra por consola las carreras recomendadas y le pide al usuario el número de la carrera elegida y en base a eso y a la base de datos ya filtrada por la función filtrar_carreras, le muestra el titulo, la duración, donde la pueden estudiar, etc.
-  
+- mostrar_perifl:
+- mostrar_grafico_top5: 
 # Resultados, salidas, métricas, gráficos o funcionalidades generadas, según corresponda
-Muestra por consola las carreras recomendadas, la duración, el título, donde se estudia. Muestra un gráfico de barras comparando el perfil RIASEC (afinidad del 1 al 10 en el eje y, carreras eje x) , otro con el top 5 carreras recomendadas (eje y) y la duración mínima (eje x).
+Muestra por consola las carreras recomendadas, la duración, el título, donde se estudia. Muestra un gráfico de barras comparando el perfil RIASEC (afinidad del 1 al 10 en el eje y, dimensiones de RIASEC en el eje x) , otro con el top 5 carreras recomendadas (eje y) y la duración de cada carrera (eje x) donde aparece la duracion minima en un color y la variacion en otro.
 
 # Diagramas de diseño.
 Ubicados en la carpeta "diagramas".
