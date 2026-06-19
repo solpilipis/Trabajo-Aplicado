@@ -4,8 +4,8 @@ import seaborn as sns
 def mostrar_ranking(df_ranking, df_filtrado):
 
     '''
-    Muestra las carreras más recomendadas (empezando por las primeras 5) y permite al usuario elegir una 
-    para obtener más información, ver más carreras en caso de empate con la última posición, o finalizar el programa.
+    Muestra las 5 carreras más recomendadas y permite al usuario elegir una para obtener más información,
+    ver más carreras en caso de empate o finalizar el programa. 
     
     Parameters 
     ----------
@@ -124,15 +124,15 @@ def mostrar_perfil(resultados):
     dimensiones = list(resultados.keys())
     puntajes = list(resultados.values())
    
-    fig, ax = plt.subplots(figsize=(8, 4))
+    fig, ax = plt.subplots(figsize=(8, 4)) # Crea la ventana compelta del grafico (fig) y define el lienzo interno de dibujo (ax), fijando unas dimensiones de 8x4 pulgadas.
     
-    sns.barplot(x=dimensiones, y=puntajes, color="#0f8b5d", ax=ax)
+    sns.barplot(x=dimensiones, y=puntajes, color="#0f8b5d", ax=ax) #Llama a seaborn. Configura las dimensiones en el eje x y puntajes en el eje y. pinta las barras y coloca todo sobre el lienzo ax
     
-    ax.set_title("Puntajes por Dimensión", fontsize=12, fontweight='bold')
+    ax.set_title("Puntajes por Dimensión", fontsize=12, fontweight='bold') 
     ax.set_ylabel("Puntaje")
-    ax.set_ylim(0, max(puntajes) + 5)
+    ax.set_ylim(0, max(puntajes) + 5) #Le da un margen extra al limite de altura, el puntaje maximo + 5 para que el texto sobre las barras no queden pegadas al techo. 
     
-    for p in ax.patches:
+    for p in ax.patches: #Empeiza un ciclo que recorre cada barra dibujada y de manera centrada escribe el valor numerico de cada puntaje por encima de cada barra.
         ax.annotate(f'{int(p.get_height())}', 
                     (p.get_x() + p.get_width() / 2., p.get_height()), 
                     ha='center', va='center', xytext=(0, 8), 
@@ -144,12 +144,12 @@ def mostrar_perfil(resultados):
 def mostrar_grafico_top5(top_5_filtrado):
     """
     Dibuja un gráfico que compara la duración estimada de las carreras recomendadas. 
-    Muestra visualmente el tiempo mínimo base y la variación de años extras según la universidad.  
+    Muestra visualemente el tiempo mínimo base y la variación de años extras según la universidad.  
 
     Parameters
     ----------
     top_5_filtrado : pandas.Dataframe
-       Una tabla de datos de las carreras recomendadas. 
+       Una tabal de datos de las carreras recomendadas. 
 
     Returns
     -------
@@ -157,27 +157,28 @@ def mostrar_grafico_top5(top_5_filtrado):
         La función no retorna ningún valor; procesa los datos y abre una ventana emergente conel gráfico.  
 
     """
+   
     print("\n🎯 Tus Carreras Recomendadas\n")
     print("Comparativa de duración estimada en tu provincia (Base mínima en verde, variación por universidad en naranja):")
 
-    top_5_filtrado = top_5_filtrado.copy()
+    top_5_filtrado = top_5_filtrado.copy() #Hace una copia de la tabal para poder modificarla sin alterar los datos originales. 
     top_5_filtrado['Duracion_Num'] = (
         top_5_filtrado['Duración'].str.extract(r'(\d+(?:\.\d+)?)')[0].astype(float)
-    )
+    ) #Crea una columna nueva. Toma el texto original del la column a"Duracion" y extrae solo los números y lo transodma en un float. 
     
-    df_rangos = top_5_filtrado.groupby('Disciplina_Principal', as_index=False)['Duracion_Num'].agg(['min', 'max'])
-    df_rangos['variacion'] = df_rangos['max'] - df_rangos['min']
+    df_rangos = top_5_filtrado.groupby('Disciplina_Principal', as_index=False)['Duracion_Num'].agg(['min', 'max']) #Agrupa las universidades por carrera, extrae la duracion min y max y las guarda en una nueva tabla llamada df_ragos.  
+    df_rangos['variacion'] = df_rangos['max'] - df_rangos['min'] #Calcula la variacion de cada carrera. 
     
-    fig, ax = plt.subplots(figsize=(9, 3.5))
-    ax.barh(y=df_rangos['Disciplina_Principal'], width=df_rangos['min'], left=0, color='#0f8b5d', label='Duración Mínima')
-    ax.barh(y=df_rangos['Disciplina_Principal'], width=df_rangos['variacion'], left=df_rangos['min'],
+    fig, ax = plt.subplots(figsize=(9, 3.5)) # Crea el "lienzo" en formato de 9x3.5 pulgadas.
+    ax.barh(y=df_rangos['Disciplina_Principal'], width=df_rangos['min'], left=0, color='#0f8b5d', label='Duración Mínima') #Dibuja la primer capa de barras, pone el nombre de las carreras en el eje y, pinta la barra que va desde 0 hasta la duracion min.
+    ax.barh(y=df_rangos['Disciplina_Principal'], width=df_rangos['variacion'], left=df_rangos['min'], # Dibuja la segunda capa en la que esta la variacion que engancha justo donde termina la otra. 
             color='#f3b0b3', alpha=0.8, edgecolor='black', linestyle='--', label='Variación según Universidad')
     
-    ax.set_xlim(0, df_rangos['max'].max() + 1)
+    ax.set_xlim(0, df_rangos['max'].max() + 1) #Estira el limite nuemrico del eje x (+1) 
     ax.set_xlabel("Años")
     ax.legend(loc="lower right")
     ax.grid(axis='x', linestyle=':', alpha=0.6)
-    plt.tight_layout()
+    plt.tight_layout() # Reacomoda los textos para que no se corten en los bordes. 
     plt.show()
                         
                         
