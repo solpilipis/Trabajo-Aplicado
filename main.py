@@ -25,7 +25,7 @@ while True:
         
         print()
         print("⚠️ No se encontraron carreras para los filtros seleccionados.")
-        print("Intenta ampliar la duración máxima o cambiar el tipo de título.")
+        print("Intenta ampliar la duración máxima o cambiar el tipo de título o gestión.")
         print()
     
     else:
