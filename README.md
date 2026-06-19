@@ -49,7 +49,7 @@ El csv del test RIASEC está basado en las traducciones oficiales al español de
 # Instrucciones para ejecutar el programa: 
 1) Clonar el repositorio: Descarga o clona este repositorio en tu computadora local.
 
-2) Instalar dependencias: Abre tu terminal, navega hasta la carpeta raíz del proyecto y ejecuta el siguiente comando para instalar las librerías necesarias: pip install -r requirements.txt
+2) Instalar dependencias: Instala las librerías necesarias nombradas en requirements.txt
 
 3) Copia las rutas de los archivos Database_Carreras_Argentinas y Test_RIASEC de tu computadora. Pegalos en el main.py en:
 
