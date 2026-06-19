@@ -144,7 +144,8 @@ def filtrar_carreras(df_carreras):
             opcion = int(input("Ingrese el número de la provincia en la que te gustaría estudiar: ")) 
             print()
  
-            if opcion < 1 or opcion > len(provincias_validas):
+            if opcion < 1 or opcion > len(provincias_validas): 
+                
                 print(f"Error: Ingrese un número entre 1 y {len(provincias_validas)}.") 
                 print()
  
@@ -155,6 +156,7 @@ def filtrar_carreras(df_carreras):
  
         except ValueError: 
             
+            print()
             print("Error: Debe ingresar un número válido.") 
             print()
         
