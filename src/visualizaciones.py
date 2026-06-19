@@ -1,8 +1,5 @@
 import matplotlib
-try:
-    matplotlib.use('TkAgg') 
-except ImportError:
-    pass
+
 import matplotlib.pyplot as plt
 import seaborn as sns
 
@@ -12,30 +9,31 @@ def mostrar_ranking(df_ranking, df_filtrado):
     Muestra las 5 carreras recomendadas y permite
     al usuario elegir una para obtener más información.
     '''
-    TOPE = 20  # máximo de carreras a mostrar aunque el empate sea más grande
-    mostrando = 5
+    max_carreras = 20  
+    mostradas = 5
  
     while True:
  
-       carreras_mostradas = df_ranking.head(mostrando)
+       carreras_mostradas = df_ranking.head(mostradas)
        cantidad = len(carreras_mostradas)
  
        print("\n🏅 TOP CARRERAS RECOMENDADAS 🏅\n")
  
-       for i in range(cantidad):
+       for i in range(cantidad): 
+           
            print(f"{i+1}. {carreras_mostradas.iloc[i]['Disciplina_Principal']}")
  
-       hay_empate = (
-           mostrando < TOPE
-           and len(df_ranking) > mostrando
-           and df_ranking.iloc[mostrando - 1]["Score"] == df_ranking.iloc[mostrando]["Score"]
-       )
+       hay_empate = (mostradas < max_carreras and len(df_ranking) > mostradas and df_ranking.iloc[mostradas - 1]["Score"] == df_ranking.iloc[mostradas]["Score"])
  
        if hay_empate:
+           
            opcion_ver_mas = cantidad + 1
            opcion_finalizar = cantidad + 2
-           print(f"{opcion_ver_mas}. Ver más carreras (hay empate con la última)")
+           
+           print(f"{opcion_ver_mas}. Ver más carreras (hay empate con la última)") 
+           
        else:
+           
            opcion_ver_mas = None
            opcion_finalizar = cantidad + 1
  
@@ -51,7 +49,8 @@ def mostrar_ranking(df_ranking, df_filtrado):
  
            opcion = int(opcion)
  
-           if opcion < 1 or opcion > opcion_finalizar:
+           if opcion < 1 or opcion > opcion_finalizar: 
+               
                print(f"Error: Debe ingresar un número entre 1 y {opcion_finalizar}.")
                continue
  
@@ -64,7 +63,8 @@ def mostrar_ranking(df_ranking, df_filtrado):
  
        elif hay_empate and opcion == opcion_ver_mas:
  
-           mostrando = min(mostrando + 5, len(df_ranking))
+           mostradas = min(mostradas + 5, len(df_ranking)) 
+           
            continue
  
        else:
@@ -162,13 +162,13 @@ def mostrar_grafico_top5(top_5_filtrado):
     top_5_filtrado['Duracion_Num'] = (
         top_5_filtrado['Duración'].str.extract(r'(\d+(?:\.\d+)?)')[0].astype(float)
     )
-
-    df_rangos = top_5_filtrado.groupby('Título', as_index=False)['Duracion_Num'].agg(['min', 'max'])
+    
+    df_rangos = top_5_filtrado.groupby('Disciplina_Principal', as_index=False)['Duracion_Num'].agg(['min', 'max'])
     df_rangos['variacion'] = df_rangos['max'] - df_rangos['min']
     
     fig, ax = plt.subplots(figsize=(9, 3.5))
-    ax.barh(y=df_rangos['Título'], width=df_rangos['min'], left=0, color='#0f8b5d', label='Duración Mínima')
-    ax.barh(y=df_rangos['Título'], width=df_rangos['variacion'], left=df_rangos['min'], 
+    ax.barh(y=df_rangos['Disciplina_Principal'], width=df_rangos['min'], left=0, color='#0f8b5d', label='Duración Mínima')
+    ax.barh(y=df_rangos['Disciplina_Principal'], width=df_rangos['variacion'], left=df_rangos['min'],
             color='#f3b0b3', alpha=0.8, edgecolor='black', linestyle='--', label='Variación según Universidad')
     
     ax.set_xlim(0, df_rangos['max'].max() + 1)

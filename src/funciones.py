@@ -382,6 +382,4 @@ def generar_ranking(codigo_usuario, df_filtrado):
 
     df_ranking = df_ranking.drop_duplicates(subset="Disciplina_Principal")
 
-    return df_ranking.head(5)
-
-
+    return df_ranking 

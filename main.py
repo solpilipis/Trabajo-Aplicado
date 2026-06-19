@@ -46,7 +46,7 @@ print("🤔 Tu perfil RIASEC es:", codigo_usuario)
 
 df_ranking = generar_ranking(codigo_usuario, df_filtrado) 
  
-top_5_filtrado = df_filtrado[df_filtrado["Disciplina_Principal"].isin(df_ranking["Disciplina_Principal"])]
+top_5_filtrado = df_filtrado[df_filtrado["Disciplina_Principal"].isin(df_ranking.head(5)["Disciplina_Principal"])]
  
 print()  
 mostrar_perfil(resultados) 
@@ -54,15 +54,7 @@ print()
 mostrar_grafico_top5(top_5_filtrado) 
 print()
  
-while True:
- 
-        try:
- 
-            mostrar_ranking(df_ranking, df_filtrado) 
+mostrar_ranking(df_ranking, df_filtrado) 
             
-            break
- 
-        except ValueError as error:
- 
-            print("Error: ", error)
+            
 

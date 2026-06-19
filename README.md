@@ -54,7 +54,7 @@ según corresponda.
 
 4) Ejecución: En la terminal, ejecuta el archivo principal con el comando: python main.py
 
-5) Interacción: Una vez que el programa inicie en la consola, deberás ingresar tus preferencias (provincia y tipo de gestión), y luego responder a las preguntas del test RIASEC calificando del 1 al 5 según tu grado de afinidad. Finalmente, el sistema te mostrará tu código, las carreras recomendadas y los gráficos de tu perfil.
+5) Interacción: Una vez que el programa inicie en la consola, deberás ingresar tus preferencias (provincia, tipo de gestión, duracion maxima y tipo de titulo), y luego responder a las preguntas del test RIASEC calificando del 1 al 5 según tu grado de afinidad. Finalmente, el sistema te mostrará tu código, las carreras recomendadas y los gráficos de tu perfil.
 
 Nota: Si el programa se ejecuta desde entornos como Spyder y los gráficos no se muestran, se recomienda correrlo desde la consola (CMD/Terminal).
 
