@@ -79,7 +79,6 @@ Nota: Si el programa se ejecuta desde entornos como Spyder y los gráficos no se
 - documentos
    - main.png
    - top5.png
-   - mostrar_listado_universidades.png
    - mostrar_perfil.png
    - mostrar_ranking.png
    - test_riasec.png
