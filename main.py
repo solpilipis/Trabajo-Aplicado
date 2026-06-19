@@ -7,8 +7,8 @@ print("🎓📚 RECOMENDADOR DE CARRERAS 🎓📚  ")
 print("=====================================")  
 print()
 
-ruta_carreras = "La ruta del csv de las carreras."
-ruta_test = "La ruta del test RIASEC."
+ruta_carreras = 
+ruta_test = 
 
 df_carreras = cargar_datos(ruta_carreras) 
 
