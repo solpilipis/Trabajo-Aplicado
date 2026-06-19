@@ -6,8 +6,19 @@ import seaborn as sns
 def mostrar_ranking(df_ranking, df_filtrado):
 
     '''
-    Muestra las 5 carreras recomendadas y permite
-    al usuario elegir una para obtener más información.
+    Muestra las 5 carreras más recomendadas y permite al usuario elegir una para obtener más información,
+    ver más carreras en caso de empate o finalizar el programa. 
+    
+    Parameters 
+    ----------
+    df_ranking: dataframe. dataframe de pandas de carreras filtradas ordenadas según su puntaje respecto
+                al perifl RIASEC del usuario. 
+    
+    df_filtrado: dataframe. dataframe de pandas de carreas filtradas según las preferencias del usuario.
+    
+    Returns
+    ------- 
+    None. 
     '''
     max_carreras = 20  
     mostradas = 5
