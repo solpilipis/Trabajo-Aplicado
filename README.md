@@ -32,7 +32,7 @@ El csv del test RIASEC está basado en las traducciones oficiales al español de
 - Duración: Duración en años de la carrera.
 - Ingreso: Condición de entrada a la universidad.
 - Domicilio: Ubicación de la universidad.
-- Telefono: Telefono de contacto de la universidad.
+- Teléfono: Telefono de contacto de la universidad.
 - Web: Página web de la universidad.
 - Mail: Mail de contacto para el ingreso.
 - Tipo_Gestion: Pública o privada.
@@ -76,6 +76,18 @@ Nota: Si el programa se ejecuta desde entornos como Spyder y los gráficos no se
 - src
    - funciones.py
    - visualizaciones.py
+- documentos
+   - main.png
+   - top5.png
+   - mostrar_listado_universidades.png
+   - mostrar_perfil.png
+   - mostrar_ranking.png
+   - test_riasec.png
+   - calcular_score.png
+   - cargar_datos.png
+   - filtrar_carreras.png
+   - generar_codigo_riasec.png
+   - generar_ranking.png
 - requirements.txt
 - README.md
 - main.py
@@ -88,8 +100,9 @@ Nota: Si el programa se ejecuta desde entornos como Spyder y los gráficos no se
 - generar_codigo_riasec: Ordena las letras del perfil del mayor al menor puntaje obtenido.
 - generar_ranking: Evalúa la afinidad de todas las carreras filtradas con el perfil del usuario, elimina opciones duplicadas y devuelve las 5 mejores recomendaciones.
 - mostrar_ranking: Muestra por consola las carreras recomendadas y le pide al usuario el número de la carrera elegida y en base a eso y a la base de datos ya filtrada por la función filtrar_carreras, le muestra el titulo, la duración, donde la pueden estudiar, etc.
-- mostrar_perifl:
-- mostrar_grafico_top5: 
+- mostrar_perfil: Dibuja un gráfico de barras verticales con los puntajes obtenidos por el usuario en cada una de las seis dimensiones RIASEC (R, I, A, S, E, C). Recibe el diccionario de resultados del test y genera una visualización con seaborn mostrando el puntaje numérico sobre cada barra.
+- mostrar_grafico_top5: Dibuja un gráfico de barras horizontales comparando la duración estimada de las carreras recomendadas. Para cada disciplina del top 5, muestra la duración mínima en verde y la variación entre universidades en rosa, permitiendo ver de un vistazo cuántos años requiere cada opción y cuánto varía según dónde se curse.
+
 # Resultados, salidas, métricas, gráficos o funcionalidades generadas, según corresponda
 Muestra por consola las carreras recomendadas, la duración, el título, donde se estudia. Muestra un gráfico de barras comparando el perfil RIASEC (afinidad del 1 al 10 en el eje y, dimensiones de RIASEC en el eje x) , otro con el top 5 carreras recomendadas (eje y) y la duración de cada carrera (eje x) donde aparece la duracion minima en un color y la variacion en otro.
 
