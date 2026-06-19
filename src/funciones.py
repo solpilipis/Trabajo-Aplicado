@@ -44,11 +44,14 @@ def test_riasec(ruta):
     numero_pregunta = 1
     
     print("Test RIASEC")
+    print()
+    print("INSTRUCCIONES") 
+    print()
     
-    print("INSTRUCCIONES")
-    
-    print("Califica qué tanto disfrutarías hacer cada actividad.")
-    print("⚠️ Reglas antes de responder:")
+    print("Califica qué tanto disfrutarías hacer cada actividad.") 
+    print()
+    print("⚠️ Reglas antes de responder:") 
+    print()
     print("  1. Ignora el sueldo: no pienses si paga bien o mal.")
     print("  2. Ignora tus estudios: no importa si aún no sabes hacerlo.")
     
@@ -75,15 +78,19 @@ def test_riasec(ruta):
             try:
                 respuesta = int(input(f"{pregunta}: "))
                
-                if respuesta < 1 or respuesta > 5:
-                    print("El valor debe ser entre 1 y 5.")
+                if respuesta < 1 or respuesta > 5: 
+                    print()
+                    print("El valor debe ser entre 1 y 5.") 
+                    print()
                     
                 else:
                     resultados[dimension] += respuesta
                     break
                     
-            except ValueError:
-                print("La respuesta debe ser un número.")
+            except ValueError: 
+                print()
+                print("La respuesta debe ser un número.") 
+                print()
         numero_pregunta += 1
     
     return resultados
@@ -333,10 +340,6 @@ def calcular_score(codigo_usuario, codigos_carrera):
         
         codigo = codigo.strip() 
         
-        if len(codigo) != 6: 
-            
-            continue 
-        
         score = 0 
         
         for i in range(6): 
@@ -355,7 +358,7 @@ def calcular_score(codigo_usuario, codigos_carrera):
 def generar_ranking(codigo_usuario, df_filtrado):  
     
     ''' 
-    Genera un ranking de las 5 carreras con mayor puntaje de similitud con el perfil RIASEC 
+    Ordena las carreras de mayor a menor punataje, dada su similitud con el perfil RIASEC
     del usuario. 
     
     Parameters 
@@ -364,7 +367,8 @@ def generar_ranking(codigo_usuario, df_filtrado):
                     al cuestionario 
     Returns
     ------- 
-    df_filtrado: dataframe filtrado según las preferencias del usuario elegidas en filtrar_carreras()
+    df_ranking: dataframe con disciplinas principales y su score correspondiente respecto al perfil
+                del usuario. 
     ''' 
     df_ranking = df_filtrado.copy()
 

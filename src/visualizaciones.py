@@ -1,5 +1,3 @@
-import matplotlib
-
 import matplotlib.pyplot as plt
 import seaborn as sns
 
@@ -87,7 +85,8 @@ def mostrar_ranking(df_ranking, df_filtrado):
            for i in df_filtrado.index:
  
                 if df_filtrado.loc[i, "Disciplina_Principal"] == carrera:
- 
+                    
+                    print('----------------------------') 
                     print(f"🏫 Universidad: {df_filtrado.loc[i, 'Universidad']}")
                     print(f"📝 Título: {df_filtrado.loc[i, 'Título']}")
                     print(f"🕓 Duración: {df_filtrado.loc[i, 'Duración']}")
@@ -95,7 +94,8 @@ def mostrar_ranking(df_ranking, df_filtrado):
                     print(f"📞 Teléfono: {df_filtrado.loc[i, 'Teléfono']}")   
                     print(f"📥 Mail: {df_filtrado.loc[i, 'Mail']}")  
                     print(f"💻 Sitio web: {df_filtrado.loc[i, 'Web']}")
-                    print()
+                    print()  
+                    
            
            print() 
            input("Presione Enter para volver al menú.") 
@@ -167,7 +167,7 @@ def mostrar_grafico_top5(top_5_filtrado):
         raise ValueError("No hay datos disponibles para generar el gráfico.")
 
     print("\n🎯 Tus Carreras Recomendadas\n")
-    print("Comparativa de duración estimada en tu provincia (Base mínima en azul, variación por universidad en naranja):")
+    print("Comparativa de duración estimada en tu provincia (Base mínima en verde, variación por universidad en naranja):")
 
     top_5_filtrado = top_5_filtrado.copy()
     top_5_filtrado['Duracion_Num'] = (

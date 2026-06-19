@@ -7,8 +7,8 @@ print("🎓📚 RECOMENDADOR DE CARRERAS 🎓📚  ")
 print("=====================================")  
 print()
 
-ruta_carreras = 
-ruta_test = 
+ruta_carreras = '/Users/clarabaietti/Documents/GitHUb/Trabajo-Aplicado/datos/Database_Carreras_Argentinas.csv'
+ruta_test = '/Users/clarabaietti/Documents/GitHUb/Trabajo-Aplicado/datos/Test_RIASEC.csv'
 
 df_carreras = cargar_datos(ruta_carreras) 
 
