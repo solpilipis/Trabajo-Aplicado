@@ -1,7 +1,5 @@
 import pandas as pd  
-import streamlit as st
 
-@st.cache_data  #Carga el archivo CSV y guarda la tabla en la memoria caché de Streamlit para que la página no tenga que releer el archivo del disco cada vez que el usuario mueve un slider o interactúa con la web.
 def cargar_datos(ruta_csv):
     """
 
@@ -29,7 +27,7 @@ def test_riasec(ruta):
     Parameters
     ----------
     ruta : string
-    Ruta del excel que tiene las preguntas del test.
+    Ruta del csv que tiene las preguntas del test.
 
     Returns
     -------
@@ -37,10 +35,13 @@ def test_riasec(ruta):
     Diccionario cuyas claves son las letras de RIASEC y cuyos valroes son la suma de las respuestas del usuario para cada letra.
 
     """
-    df = pd.read_csv(ruta)
-    df['Dimensión RIASEC'] = df['Dimensión RIASEC'].str[0]
+    df = pd.read_csv(ruta) #Lee el csv y lo guarda en un dataframe.
+    df['Dimensión RIASEC'] = df['Dimensión RIASEC'].str[0] #Renombra las dimensiones para que sean tan solo la primera letra (R, I, A, S, E o C)
     
     resultados = {"R": 0, "I": 0, "A": 0, "S": 0, "E": 0, "C": 0}
+    
+    total_preguntas = len(df)
+    numero_pregunta = 1
     
     print("Test RIASEC")
     
@@ -52,8 +53,11 @@ def test_riasec(ruta):
     print("  2. Ignora tus estudios: no importa si aún no sabes hacerlo.")
     
     
-    for indice, fila in df.iterrows(): 
+    for indice, fila in df.iterrows(): #Recorre fila por fila.
         
+        print()
+        print()
+        print(f"PREGUNTA {numero_pregunta} DE {total_preguntas}")
         print()
         print("Escala:") 
         print()
@@ -80,6 +84,7 @@ def test_riasec(ruta):
                     
             except ValueError:
                 print("La respuesta debe ser un número.")
+        numero_pregunta += 1
     
     return resultados
 
@@ -104,50 +109,112 @@ def filtrar_carreras(df_carreras):
         Dataframe nuevo y mas chico que contiene unicamente la informacion que cumplen las dos condiciones que ingreso el usuario
         
     """
-    #filtro provincia 
+    #filtro provincia  
+    
+    provincias_validas = ["Buenos Aires", "Catamarca", "Chaco", "Chubut", 
+    "Ciudad Autonoma de Buenos Aires", "Córdoba", "Corrientes", "Entre Ríos", "Formosa", 
+    "Jujuy", "La Pampa", "La Rioja", "Mendoza", "Misiones", "Neuquén", "Río Negro", "Salta",
+    "San Juan", "San Luis", "Santa Cruz", "Santa Fé", "Santiago Del Estero", "Tierra Del Fuego", "Tucumán"]
+    
+    print("Lista de provincias:") 
+    print()
+    print(
+       " 1. Buenos Aires                  2. Catamarca                   3. Chaco\n"
+       " 4. Chubut                        5. Ciudad Autonoma de BA       6. Córdoba\n"
+       " 7. Corrientes                    8. Entre Ríos                  9. Formosa\n"
+       "10. Jujuy                        11. La Pampa                   12. La Rioja\n"
+       "13. Mendoza                      14. Misiones                   15. Neuquén\n"
+       "16. Río Negro                    17. Salta                      18. San Juan\n"
+       "19. San Luis                     20. Santa Cruz                 21. Santa Fé\n"
+       "22. Santiago Del Estero          23. Tierra Del Fuego           24. Tucumán"
+    )
+    print()
     
     while True:
  
-        provincia = input("Ingrese la provincia de interés: ").strip().lower()
+        try:
  
-        condicion_provincia = (df_carreras["Provincia"].str.lower().str.contains(provincia))
+            opcion = int(input("Ingrese el número de la provincia en la que te gustaría estudiar: ")) 
+            print()
  
-        if condicion_provincia.any(): 
+            if opcion < 1 or opcion > len(provincias_validas):
+                print(f"Error: Ingrese un número entre 1 y {len(provincias_validas)}.") 
+                print()
+ 
+            else:
+                provincia_elegida = provincias_validas[opcion - 1]
+                condicion_provincia = (df_carreras["Provincia"].str.split(",").str[-1].str.strip() == provincia_elegida)
+                break
+ 
+        except ValueError: 
             
-            break 
-        
-        print("Error: La provincia ingresada no es válida.") 
+            print("Error: Debe ingresar un número válido.") 
+            print()
         
     #filtro gestión
+    
+    print("Tipo de universidad:")
+    print()
+    print("  1. Pública")
+    print("  2. Privada")
+    print()
 
     while True:
+        
+        try: 
+            opcion_gestion = int(input("Ingrese el número del tipo de universidad que prefiere: "))
+            print()
  
-        tipo_gestion = input("Ingrese el tipo de universidad (Pública/Privada): ").strip().lower()
- 
-        if tipo_gestion == "publica":
-            tipo_gestion = "pública"
- 
-        if tipo_gestion in list(df_carreras["Tipo_Gestion"].str.lower()): 
+            if opcion_gestion == 1:
+                tipo_gestion = "pública"
+                break
             
-            break
+            elif opcion_gestion == 2:
+                tipo_gestion = "privada"
+                break
+            
+            else:
+                print("Error: Ingrese 1 o 2.") 
+                print()
  
-        print("Error: Debe ingresar Pública o Privada.") 
+        except ValueError:
+            print("Error: Debe ingresar un número.")
+            print()
         
     #filtro tipo de título
-
+    print("Tipo de título:") 
+    print()
+    print("  1. Grado")
+    print("  2. Título Intermedio")
+    print("  3. Otro")
+    print()
+ 
     while True:
+        
+        try: 
+            opcion_titulo = int(input("Ingrese el número del tipo de título que busca: "))
+            print()
+        
+            if opcion_titulo == 1:
+                tipo_titulo = "grado"
+                break 
+        
+            elif opcion_titulo == 2:
+                tipo_titulo = "título intermedio"
+                break
+        
+            elif opcion_titulo == 3:
+                tipo_titulo = "otro"
+                break
+        
+            else: 
+                print("Error: Ingrese 1, 2 o 3.")
+                print()
  
-        tipo_titulo = input("Ingrese el tipo de título que busca (Grado/Título Intermedio/Otro): ").strip().lower()
- 
-        if tipo_titulo == "titulo intermedio":
-            tipo_titulo = "título intermedio"
- 
-        if tipo_titulo in ("grado", "título intermedio", "otro"): 
-            
-            break
- 
-        print("Error: Debe ingresar Grado, Título Intermedio u Otro.")
- 
+        except ValueError: 
+            print("Error: Debe ingresar un número.") 
+            print()
+    
     if tipo_titulo == "grado":
  
         condicion_titulo = (df_carreras["Tipo"].str.lower() == "grado") 
@@ -159,22 +226,31 @@ def filtrar_carreras(df_carreras):
     else:
  
         condicion_titulo = ((df_carreras["Tipo"].str.lower() != "grado") & (df_carreras["Tipo"].str.lower() != "título intermedio"))
-
+   
     #filtro duración máxima
     
     while True:
  
-        entrada_duracion = input("Ingrese la duración máxima deseada (en años): ").strip()
+        entrada_duracion = input("Ingrese la duración máxima (en años) deseada (entre 1 a 10): ").strip() 
+        print()
  
         try: 
             
-            duracion_max = float(entrada_duracion) 
+            duracion_max = float(entrada_duracion)  
             
-            break 
+            if duracion_max < 1 or duracion_max > 10:  
+                
+                print("Error: La duración debe ser un número entre 1 y 10.")  
+                print()
+            
+            else: 
+                
+                break
         
         except ValueError: 
             
-            print("Error: La duración debe ser un número.") 
+            print("Error: La duración debe ser un número.")  
+            print()
     
     duraciones = df_carreras["Duración"].str.extract(r'(\d+(?:\.\d+)?)')[0].astype(float) 
     
@@ -306,6 +382,4 @@ def generar_ranking(codigo_usuario, df_filtrado):
 
     df_ranking = df_ranking.drop_duplicates(subset="Disciplina_Principal")
 
-    return df_ranking.head(5)
-
-
+    return df_ranking 
